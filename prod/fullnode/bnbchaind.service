@@ -1,0 +1,19 @@
+[Unit]
+Description=bnbchain
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/server/bnbchaind/fullnode/chaind.sh -start
+ExecReload=/server/bnbchaind/fullnode/chaind.sh -restart
+ExecStop=/server/bnbchaind/fullnode/chaind.sh -stop
+PrivateTmp=true
+Restart=always
+LimitNOFILE=10000
+RestartSec=5
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target

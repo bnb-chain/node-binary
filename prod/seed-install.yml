@@ -1,0 +1,75 @@
+- hosts: tag_Name_*s3_seed_ec2_1
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  become_flags: "-i"
+  become_user: root
+  vars:
+    REBUILD: "TRUE"
+    INIT: "TRUE"
+  environment:
+    DEPLOY_MODE: prod
+  tasks:
+  - name: Prepare directories
+    file:
+      path: /server/bnbchaind/seed
+      state: directory
+      mode: 0755
+  - name: Copy config files
+    copy:
+      src: /root/bnbchain/src/github.com/binance-chain/bnc-deploy/bnb-chain/kubenet/../../build/seed
+      dest: /server/bnbchaind/seed
+    when:
+    - REBUILD == "TRUE"
+  - name: Copy bnbchaind
+    copy:
+      src: /root/bnbchain/src/github.com/binance-chain/bnc-deploy/bnb-chain/kubenet/../../build/bnbchaind
+      dest: /server/bnbchaind/seed/
+      mode: 0750
+  - name: Copy bnbcli
+    copy:
+      src: /root/bnbchain/src/github.com/binance-chain/bnc-deploy/bnb-chain/kubenet/../../build/bnbcli
+      dest: /server/bnbchaind/seed/
+      mode: 0750
+  - name: Copy run script
+    copy:
+      src: /root/bnbchain/src/github.com/binance-chain/bnc-deploy/bnb-chain/kubenet/node//seed/start.sh
+      dest: /server/bnbchaind/seed/
+      mode: 0750
+  - name: Rename
+    command: "{{item}}"
+    with_items:
+    - rm -rf /server/bnbchaind/seed/node
+    - mv /server/bnbchaind/seed/seed /server/bnbchaind/seed/node
+    when:
+    - REBUILD == "TRUE"
+  - name: Copy service bnbchaind
+    copy:
+      src: /root/bnbchain/src/github.com/binance-chain/bnc-deploy/bnb-chain/kubenet/node//seed/bnbchaind.service
+      dest: /usr/lib/systemd/system/
+      mode: 0740
+    when:
+    - INIT == "TRUE"
+  - name: Copy service bnbcli
+    copy:
+      src: /root/bnbchain/src/github.com/binance-chain/bnc-deploy/bnb-chain/kubenet/node//seed/bnbcli.service
+      dest: /usr/lib/systemd/system/
+      mode: 0740
+    when:
+    - INIT == "TRUE"
+  - name: Copy service bnbchaind script
+    copy:
+      src: /root/bnbchain/src/github.com/binance-chain/bnc-deploy/bnb-chain/kubenet/node//seed/chaind.sh
+      dest: /server/bnbchaind/seed/
+      mode: 0750
+    when:
+    - INIT == "TRUE"
+  - name: Copy service bnbcli script
+    copy:
+      src: /root/bnbchain/src/github.com/binance-chain/bnc-deploy/bnb-chain/kubenet/node//seed/bnbcli.sh
+      dest: /server/bnbchaind/seed/
+      mode: 0750
+    when:
+    - INIT == "TRUE"
+  - name: Run bnc
+    command: /bin/sh /server/bnbchaind/seed/start.sh
