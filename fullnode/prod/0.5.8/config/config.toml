@@ -256,7 +256,7 @@ index_all_tags = false
 prometheus = false
 
 # Address to listen for Prometheus collector(s) connections
-prometheus_listen_addr = ":28660"
+prometheus_listen_addr = ":26660"
 
 # Maximum number of simultaneous connections.
 # If you want to accept a larger number than the default, make sure
