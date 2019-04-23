@@ -121,16 +121,10 @@ laddr = "tcp://0.0.0.0:27146"
 external_address = ""
 
 # Comma separated list of seed nodes to connect to
-seeds = ""
+seeds = "dbec1c96777dc757db67945cbc41e3e793b94261@63.35.153.228:27146,e2c323d27867bad2298a5452490157436e70e698@52.213.118.150:27146"
 
 # Comma separated list of nodes to keep persistent connections to
-#persistent_peers = "372c38a692895a314cb2b00b09fc861cfd8b0e94@127.0.0.1:26656"
-#persistent_peers = "e06945c097a20311cae9df569fc4d252b2b63f85@dexpre-s3-fullnode-elb-593057660.us-east-1.elb.amazonaws.com:26856"
-#persistent_peers = "b2b4005e4cb7411a0aa8ba4b3a06da3c40896387@192.168.10.60:27656"
-#persistent_peers = "9612b570bffebecca4776cb4512d08e252119005@a0b88b324243a11e994280efee3352a7-96b6996626c6481d.elb.ap-northeast-1.amazonaws.com:27146,8c379d4d3b9995c712665dc9a9414dbde5b30483@aa1e4d0d1243a11e9a951063f6065739-7a82be90a58744b6.elb.ap-northeast-1.amazonaws.com:27146,7156d461742e2a1e569fd68426009c4194830c93@aa841c226243a11e9a951063f6065739-eee556e439dc6a3b.elb.ap-northeast-1.amazonaws.com:27146"
-#persistent_peers = "b4df8a0e6f1fa312fddb49b7da17f9ca211fcd25@aa13359cd244f11e988520ad55ba7f5a-c3963b80c9b991b7.elb.us-east-1.amazonaws.com:27146"
-persistent_peers = "dbec1c96777dc757db67945cbc41e3e793b94261@63.35.153.228:27146,e2c323d27867bad2298a5452490157436e70e698@52.213.118.150:27146"
-
+persistent_peers = ""
 # UPNP port forwarding
 upnp = false
 
@@ -169,7 +163,7 @@ ping_interval = "1m0s"
 pong_timeout = "45s"
 
 # Set true to enable the peer-exchange reactor
-pex = false
+pex = true
 
 # Seed mode, in which node constantly crawls the network and looks for
 # peers. If another node asks it for addresses, it responds and disconnects.
