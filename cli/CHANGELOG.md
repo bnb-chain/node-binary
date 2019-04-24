@@ -5,6 +5,7 @@
 
 This is the second public release of Binance Chain Client for mainnet and testnet.
 
+
 **Feature**
 * Add ledger support
 
