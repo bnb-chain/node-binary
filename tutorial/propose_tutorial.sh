@@ -158,7 +158,7 @@ while true; do
     result=$(echo ${deposit_amount} | grep "^[1-9][0-9]*$")
     if [[ "$result" == ""  ]]
     then
-        echo "supply should only contains numeric characters"
+        echo "deposit amount should only contain numeric characters"
         continue
     fi
 
@@ -181,12 +181,18 @@ while true; do
     result=$(echo ${base_asset} | grep "^[0-9|a-z|A-Z|\.|-]\{3,20\}$")
     if [[ "$result" == ""  ]]
     then
-        echo "base asset should only contains 3~20 alphanumeric characters or '-', please try again"
+        echo "base asset should only contain 3~20 alphanumeric characters or '-', please try again"
         continue
-    else
-        base_asset=$(echo ${base_asset} | tr a-z A-Z)
-        break
     fi
+
+    base_asset=$(echo ${base_asset} | tr a-z A-Z)
+    result=$(echo $(${bnbcli} token info --trust-node -s ${base_asset} --node ${node}) | grep original_symbol)
+    if [[ "$result" == ""  ]]
+    then
+        echo "it seems asset ${base_asset} does not exist or there is an error happened, please try again"
+        continue
+    fi
+    break
 done
 
 # Get quote asset
@@ -197,12 +203,24 @@ while true; do
     result=$(echo ${quote_asset} | grep "^[0-9|a-z|A-Z|\.|-]\{3,20\}$")
     if [[ "$result" == ""  ]]
     then
-        echo "quote asset should only contains 3~20 alphanumeric characters or '-', please try again"
+        echo "quote asset should only contain 3~20 alphanumeric characters or '-', please try again"
         continue
-    else
-        quote_asset=$(echo ${quote_asset} | tr a-z A-Z)
-        break
     fi
+
+    if [[ ${base_asset} == ${quote_asset}  ]]
+    then
+        echo "base asset(${base_asset}) and quote asset(${quote_asset}) should not be identical, please try again"
+        continue
+    fi
+
+    quote_asset=$(echo ${quote_asset} | tr a-z A-Z)
+    result=$(echo $(${bnbcli} token info --trust-node -s ${quote_asset} --node ${node}) | grep original_symbol)
+    if [[ "$result" == ""  ]]
+    then
+        echo "it seems asset ${quote_asset} does not exist or there is an error happened, please try again"
+        continue
+    fi
+    break
 done
 
 # Get list price
@@ -213,7 +231,7 @@ while true; do
     result=$(echo ${real_list_price} | grep "^[0-9|\.]*$")
     if [[ "$result" == ""  ]]
     then
-        echo "list price should only contains numeric characters"
+        echo "list price should only contain numeric characters"
         continue
     fi
     list_price=$(echo $(echo "${real_list_price} * 100000000"|bc) | cut -d '.' -f1)
@@ -237,7 +255,7 @@ while true; do
     result=$(echo ${voting_period} | grep "^[1-9][0-9]*$")
     if [[ "$result" == ""  ]]
     then
-        echo "voting period should only contains numeric characters"
+        echo "voting period should only contain numeric characters"
         continue
     fi
 
@@ -272,7 +290,6 @@ while true; do
     esac
 done
 
-
 # Get expire time
 while true; do
     echo "How long do you give yourself to run list command before expire (a decimal number in days)?"
@@ -281,7 +298,7 @@ while true; do
     result=$(echo ${expire_days} | grep "^[1-9][0-9]*$")
     if [[ "$result" == ""  ]]
     then
-        echo "expire days should only contains numeric characters"
+        echo "expire days should only contain numeric characters"
         continue
     fi
 

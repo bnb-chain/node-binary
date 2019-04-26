@@ -152,7 +152,7 @@ done
 
 # Get token name
 while true; do
-    echo "What is the token name?"
+    echo "What is the token name?(token name should only contains less than 33 alphanumeric characters and space)"
     read token_name
 
     result=$(echo ${token_name} | grep "^[0-9|a-z|A-Z| ]\{1,32\}$")
@@ -167,7 +167,7 @@ done
 
 # Get symbol
 while true; do
-    echo "What is the symbol?"
+    echo "What is the symbol?(symbol should only contains 3~8 alphanumeric characters)"
     read symbol
 
     result=$(echo ${symbol} | grep "^[0-9|a-z|A-Z]\{3,8\}$")
@@ -183,7 +183,7 @@ done
 
 # Get supply
 while true; do
-    echo "What is the total supply(real number)?"
+    echo "What is the actual total supply?(supply should larger than 1000 and less than 90000000000)"
     read supply
 
     result=$(echo ${supply} | grep "^[1-9][0-9]*$")
