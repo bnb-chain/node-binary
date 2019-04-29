@@ -16,12 +16,12 @@ moniker = "xxx"
 fast_sync = true
 
 # As state sync is an experimental feature, this switch can totally disable it on core network nodes (validator, witness)
-state_sync_reactor = true
+state_sync_reactor = false
 
 # If this node is many days behind the tip of the chain, StateSync
 # allows them to catchup quickly by downloading app state (without historical blocks)
 # in parallel and start syncing block afterwards
-state_sync = true
+state_sync = false
 
 # Database backend: leveldb | memdb | cleveldb
 db_backend = "leveldb"
