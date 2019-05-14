@@ -152,7 +152,7 @@ done
 
 # Get deposit amount
 while true; do
-    echo "What is the deposit BNB amount for Listing (real number)? (you should deposit 1000BNB in mainnet and 2000BNB in testnet)"
+    echo "What is the deposit BNB amount for Listing (real number)? (you should deposit 1000 BNB in mainnet and 800 BNB in testnet)"
     read deposit_amount
 
     result=$(echo ${deposit_amount} | grep "^[1-9][0-9]*$")
@@ -163,7 +163,7 @@ while true; do
     fi
 
     english_version=$(number2words ${deposit_amount})
-    echo "Deposit amount is ${english_version}(${deposit_amount})BNB, which will be shown as ${deposit_amount}00000000 in command, enter Y to continue, enter other key to input again."
+    echo "Deposit amount is ${english_version}(${deposit_amount}) BNB, which will be shown as ${deposit_amount}00000000 in command, enter Y to continue, enter other key to input again."
     read retry
     case ${retry} in
         [Yy] )
@@ -175,7 +175,7 @@ done
 
 # Get base asset
 while true; do
-    echo "What is the base asset?"
+    echo "What is the base asset? (The token to list)"
     read base_asset
 
     result=$(echo ${base_asset} | grep "^[0-9|a-z|A-Z|\.|-]\{3,20\}$")
@@ -197,7 +197,7 @@ done
 
 # Get quote asset
 while true; do
-    echo "What is the quote asset?"
+    echo "What is the quote asset? (The trading pair, such as BNB)"
     read quote_asset
 
     result=$(echo ${quote_asset} | grep "^[0-9|a-z|A-Z|\.|-]\{3,20\}$")
@@ -249,7 +249,7 @@ now_timestamp=$(date '+%s')
 
 # Get voting period
 while true; do
-    echo "How long do you give Validators to vote (a decimal number in hours)?"
+    echo "How long do you give Validators to vote (a decimal number in hours)? (Recommend 1-2 weeks; 168-336 hours)"
     read voting_period
 
     result=$(echo ${voting_period} | grep "^[1-9][0-9]*$")
@@ -292,7 +292,7 @@ done
 
 # Get expire time
 while true; do
-    echo "How long do you give yourself to run list command before expire (a decimal number in days)?"
+    echo "How long do you give yourself to run list command before expire (a decimal number in days)? (Recommend 14-30 days)"
     read expire_days
 
     result=$(echo ${expire_days} | grep "^[1-9][0-9]*$")
@@ -334,11 +334,11 @@ done
 
 command="${bnbcli} gov submit-list-proposal --from ${account_name} --deposit ${deposit_amount}00000000:BNB --base-asset-symbol ${base_asset} --quote-asset-symbol ${quote_asset} --init-price ${list_price} --title \"list ${base_asset}/${quote_asset}\" --description \"list ${base_asset}/${quote_asset}\" --expire-time ${expire_timestamp} --voting-period ${voting_period} --chain-id=${chain_id} --trust-node --node ${node} --home ${bnbcli_home} --json "
 list_command="${bnbcli} dex list --from {owner_account} --proposal-id {proposal_id} --node ${node} --chain-id ${chain_id} --init-price ${list_price} -s ${base_asset} --quote-asset-symbol ${quote_asset} --home ${bnbcli_home}"
-echo "Below is the command to be executed"
+echo "Below is the command to be executed:"
 echo "*****************************************************"
 echo ${command}
 echo "*****************************************************"
-echo "And below is the list command, please replace owner account and proposal id if proposal passed. "
+echo "And below is the list command, please replace owner account and proposal ID once proposal passed. "
 echo "*****************************************************"
 echo ${list_command}
 echo "*****************************************************"
