@@ -79,17 +79,17 @@ fi
 # Get account type
 while true; do
     echo "Will you use Ledger or local key store to sign the transactions?"
-    echo "1 for legder"
-    echo "2 for local key store"
+    echo "1 for Ledger"
+    echo "2 for Local Key store"
 
     read account_type
 
     case ${account_type} in
         [1] )
-            echo "Ok, you choose legder"
+            echo "Ok, you choose Ledger"
             break;;
         [2] )
-            echo "Ok, you choose local key store"
+            echo "Ok, you choose Local Key Store"
             break;;
         * ) echo 'Please input 1 or 2';;
     esac
@@ -115,7 +115,7 @@ while true; do
         accounts=$(echo "$(${bnbcli} keys list )" | grep ledger)
         if [[ "${accounts}" == "" ]]
         then
-            echo "there is no account exist"
+            echo "No account exists there"
             continue
         fi
         echo "${accounts}"
@@ -123,7 +123,7 @@ while true; do
         accounts=$(echo "$(${bnbcli} keys list )" | grep local)
         if [[ "${accounts}" == "" ]]
         then
-            echo "there is no account exist"
+            echo "No account exists there"
             continue
         fi
         echo "${accounts}"
@@ -152,13 +152,13 @@ done
 
 # Get token name
 while true; do
-    echo "What is the token name?(token name should only contains less than 33 alphanumeric characters and space)"
+    echo "What is the token name? (Token name should only contain less than 33 alphanumeric characters and space)"
     read token_name
 
     result=$(echo ${token_name} | grep "^[0-9|a-z|A-Z| ]\{1,32\}$")
     if [[ "$result" == "" ]]
     then
-        echo "token name should only contains less than 33 alphanumeric characters and space, please try again"
+        echo "Token name should only contain less than 33 alphanumeric characters and space, please try again."
         continue
     else
         break
@@ -167,13 +167,13 @@ done
 
 # Get symbol
 while true; do
-    echo "What is the symbol?(symbol should only contains 3~8 alphanumeric characters)"
+    echo "What is the symbol? (Symbol should only contain 3~8 alphanumeric characters)"
     read symbol
 
     result=$(echo ${symbol} | grep "^[0-9|a-z|A-Z]\{3,8\}$")
     if [[ "$result" == ""  ]]
     then
-        echo "symbol should only contains 3~8 alphanumeric characters, please try again"
+        echo "Symbol should only contain 3~8 alphanumeric characters, please try again."
         continue
     else
         symbol=$(echo ${symbol} | tr a-z A-Z)
@@ -183,23 +183,23 @@ done
 
 # Get supply
 while true; do
-    echo "What is the actual total supply?(supply should larger than 1000 and less than 90000000000)"
+    echo "What is the actual total supply? (Supply should be larger than 1000 and less than 90000000000)"
     read supply
 
     result=$(echo ${supply} | grep "^[1-9][0-9]*$")
     if [[ "$result" == ""  ]]
     then
-        echo "supply should only contains numeric characters"
+        echo "Supply should only contain numeric characters."
         continue
     fi
 
     if [[ $((supply)) -lt 1000 || $((supply)) -gt 90000000000 ]]
     then
-        echo "supply should larger than 1000 and less than 90000000000"
+        echo "Supply should be larger than 1000 and less than 90000000000."
     fi
 
     english_version=$(number2words ${supply})
-    echo "total supply is ${english_version}(${supply}), which will be showed as ${supply}00000000 in command, enter Y to continue, enter other key to input again"
+    echo "Total supply is ${english_version}(${supply}), which will be shown as ${supply}00000000 in command, enter Y to continue, enter other key to input again."
     read retry
     case ${retry} in
         [Yy] )
@@ -211,7 +211,7 @@ done
 
 # Get mintable
 while true; do
-    echo "Is the token mintable?[Y or N]"
+    echo "Is the token mintable? [Y or N]"
     read mintable
 
     case ${mintable} in
@@ -226,11 +226,11 @@ while true; do
 done
 
 command="${bnbcli} token issue -s ${symbol} --token-name \"${token_name}\" --total-supply ${supply}00000000 --from ${account_name} --mintable ${mintable} --chain-id ${chain_id} --node=${node}"
-echo "Below is the command to be executed"
+echo "Below is the command to be executed:"
 echo "*****************************************************"
 echo ${command}
 echo "*****************************************************"
-echo "enter Y to execute and enter N to abort!"
+echo "Enter Y to execute or enter N to abort."
 while true; do
     read execute
 
