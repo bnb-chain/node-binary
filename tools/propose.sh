@@ -48,7 +48,7 @@ testnet_bnbcli="./tbnbcli"
 mainnet_bnbcli="./bnbcli"
 
 while true; do
-    echo "Do you want to send transaction to testnet or mainnet?"
+    echo "Do you want to send the transaction to testnet or mainnet?"
     echo "1 for testnet"
     echo "2 for mainnet"
 
@@ -56,13 +56,13 @@ while true; do
 
     case ${env} in
         [1] )
-            echo "Ok, you choose testnet"
+            echo "Ok, you chose testnet"
             chain_id=${testnet_chain_id}
             node=${testnet_node}
             bnbcli=${testnet_bnbcli}
             break;;
         [2] )
-            echo "Ok, you choose mainnet"
+            echo "Ok, you chose mainnet"
             chain_id=${mainnet_chain_id}
             node=${mainnet_node}
             bnbcli=${mainnet_bnbcli}
@@ -78,18 +78,18 @@ fi
 
 # Get account type
 while true; do
-    echo "Will you use Ledger or local key store to sign the transactions?"
-    echo "1 for legder"
-    echo "2 for local key store"
+    echo "Will you use Ledger or Local Key Store to sign the transaction?"
+    echo "1 for Ledger"
+    echo "2 for Local Key store"
 
     read account_type
 
     case ${account_type} in
         [1] )
-            echo "Ok, you choose legder"
+            echo "Ok, you chose Ledger"
             break;;
         [2] )
-            echo "Ok, you choose local key store"
+            echo "Ok, you chose Local Key Store"
             break;;
         * ) echo 'Please input 1 or 2';;
     esac
@@ -97,12 +97,12 @@ done
 
 # Get accounts
 while true; do
-    echo "Where is your bnbcli home?(default is ~/.bnbcli, just press enter if you want to use default)"
+    echo "Where is your bnbcli home? (Default is ~/.bnbcli, just press enter if you want to use default)"
     read bnbcli_home
     if [[ "${bnbcli_home}" == "" ]]
     then
         bnbcli_home="${HOME}/.bnbcli"
-        echo "You choose default home!"
+        echo "You chose default home"
     fi
 
     if [[ ! -d "$bnbcli_home" ]]; then
@@ -115,7 +115,7 @@ while true; do
         accounts=$(echo "$(${bnbcli} keys list )" | grep ledger)
         if [[ "${accounts}" == "" ]]
         then
-            echo "there is no account exist"
+            echo "No account exists there."
             continue
         fi
         echo "${accounts}"
@@ -123,7 +123,7 @@ while true; do
         accounts=$(echo "$(${bnbcli} keys list )" | grep local)
         if [[ "${accounts}" == "" ]]
         then
-            echo "there is no account exist"
+            echo "No account exists there."
             continue
         fi
         echo "${accounts}"
@@ -152,18 +152,18 @@ done
 
 # Get deposit amount
 while true; do
-    echo "What is the deposit BNB amount for Listing(real number)?(you should deposit 1000BNB in mainnet and 2000BNB in testnet)"
+    echo "What is the deposit BNB amount for Listing (real number)? (you should deposit 1000BNB in mainnet and 2000BNB in testnet)"
     read deposit_amount
 
     result=$(echo ${deposit_amount} | grep "^[1-9][0-9]*$")
     if [[ "$result" == ""  ]]
     then
-        echo "deposit amount should only contain numeric characters"
+        echo "Deposit amount should only contain numeric characters."
         continue
     fi
 
     english_version=$(number2words ${deposit_amount})
-    echo "deposit amount is ${english_version}(${deposit_amount})BNB, which will be showed as ${deposit_amount}00000000 in command, enter Y to continue, enter other key to input again"
+    echo "Deposit amount is ${english_version}(${deposit_amount})BNB, which will be shown as ${deposit_amount}00000000 in command, enter Y to continue, enter other key to input again."
     read retry
     case ${retry} in
         [Yy] )
@@ -181,7 +181,7 @@ while true; do
     result=$(echo ${base_asset} | grep "^[0-9|a-z|A-Z|\.|-]\{3,20\}$")
     if [[ "$result" == ""  ]]
     then
-        echo "base asset should only contain 3~20 alphanumeric characters or '-', please try again"
+        echo "Base asset should only contain 3~20 alphanumeric characters or '-', please try again"
         continue
     fi
 
@@ -189,7 +189,7 @@ while true; do
     result=$(echo $(${bnbcli} token info --trust-node -s ${base_asset} --node ${node}) | grep original_symbol)
     if [[ "$result" == ""  ]]
     then
-        echo "it seems asset ${base_asset} does not exist or there is an error happened, please try again"
+        echo "It seems asset ${base_asset} does not exist or an error happened, please try again."
         continue
     fi
     break
@@ -203,13 +203,13 @@ while true; do
     result=$(echo ${quote_asset} | grep "^[0-9|a-z|A-Z|\.|-]\{3,20\}$")
     if [[ "$result" == ""  ]]
     then
-        echo "quote asset should only contain 3~20 alphanumeric characters or '-', please try again"
+        echo "Quote asset should only contain 3~20 alphanumeric characters or '-', please try again."
         continue
     fi
 
     if [[ ${base_asset} == ${quote_asset}  ]]
     then
-        echo "base asset(${base_asset}) and quote asset(${quote_asset}) should not be identical, please try again"
+        echo "Base asset(${base_asset}) and quote asset(${quote_asset}) should not be identical, please try again."
         continue
     fi
 
@@ -217,7 +217,7 @@ while true; do
     result=$(echo $(${bnbcli} token info --trust-node -s ${quote_asset} --node ${node}) | grep original_symbol)
     if [[ "$result" == ""  ]]
     then
-        echo "it seems asset ${quote_asset} does not exist or there is an error happened, please try again"
+        echo "It seems asset ${quote_asset} does not exist or an error happened, please try again."
         continue
     fi
     break
@@ -231,11 +231,11 @@ while true; do
     result=$(echo ${real_list_price} | grep "^[0-9|\.]*$")
     if [[ "$result" == ""  ]]
     then
-        echo "list price should only contain numeric characters"
+        echo "List price should only contain numeric characters."
         continue
     fi
     list_price=$(echo $(echo "${real_list_price} * 100000000"|bc) | cut -d '.' -f1)
-    echo "list price is ${real_list_price}${quote_asset}, which will be showed as ${list_price} in command, enter Y to continue and enter other key to input again"
+    echo "List price is ${real_list_price}${quote_asset}, which will be shown as ${list_price} in command, enter Y to continue and enter other key to input again."
     read retry
     case ${retry} in
         [Yy] )
@@ -255,13 +255,13 @@ while true; do
     result=$(echo ${voting_period} | grep "^[1-9][0-9]*$")
     if [[ "$result" == ""  ]]
     then
-        echo "voting period should only contain numeric characters"
+        echo "Voting period should only contain numeric characters."
         continue
     fi
 
     if [[ $((voting_period)) -gt 336 ]]
     then
-        echo "voting period should less than 2 weeks"
+        echo "Voting period should less than 2 weeks."
     fi
 
     voting_period=$(($((voting_period))*3600))
@@ -298,13 +298,13 @@ while true; do
     result=$(echo ${expire_days} | grep "^[1-9][0-9]*$")
     if [[ "$result" == ""  ]]
     then
-        echo "expire days should only contain numeric characters"
+        echo "Expire days should only contain numeric characters."
         continue
     fi
 
     if [[ $((expire_days)) -gt 30 ]]
     then
-        echo "expire days should less than 30"
+        echo "Expire days should less than 30."
     fi
 
     expire_timestamp=$(($(date '+%s')+$((voting_period))+$((expire_days))*86400))
@@ -342,7 +342,7 @@ echo "And below is the list command, please replace owner account and proposal i
 echo "*****************************************************"
 echo ${list_command}
 echo "*****************************************************"
-echo "enter Y to execute and enter N to abort!"
+echo "Enter Y to execute or enter N to abort."
 while true; do
     read execute
 
