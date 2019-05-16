@@ -225,7 +225,7 @@ while true; do
     esac
 done
 
-command="${bnbcli} token issue -s ${symbol} --token-name \"${token_name}\" --total-supply ${supply}00000000 --from ${account_name} --mintable ${mintable} --chain-id ${chain_id} --node=${node}"
+command="${bnbcli} token issue -s ${symbol} --token-name \"${token_name}\" --total-supply ${supply}00000000 --from ${account_name} --mintable=${mintable} --chain-id ${chain_id} --node=${node}"
 echo "Below is the command to be executed:"
 echo "*****************************************************"
 echo ${command}
@@ -236,7 +236,7 @@ while true; do
 
     case ${execute} in
         [Yy] )
-            ${bnbcli} token issue -s ${symbol} --token-name "${token_name}" --total-supply ${supply}00000000 --from ${account_name} --mintable ${mintable} --chain-id ${chain_id} --node=${node}
+            ${bnbcli} token issue -s ${symbol} --token-name "${token_name}" --total-supply ${supply}00000000 --from ${account_name} --mintable=${mintable} --chain-id ${chain_id} --node=${node}
             break;;
         [Nn] )
             exit
