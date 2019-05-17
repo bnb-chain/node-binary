@@ -138,7 +138,7 @@ addr_book_strict = false
 max_num_inbound_peers = 40
 
 # Maximum number of outbound peers to connect to, excluding persistent peers
-max_num_outbound_peers = 10
+max_num_outbound_peers = 3
 
 # Time to wait before flushing messages out on the connection
 flush_throttle_timeout = "10ms"
