@@ -1,0 +1,80 @@
+# This is a TOML config file.
+# For more information, see https://github.com/toml-lang/toml
+
+[base]
+# Interval blocks of breathe block, if breatheBlockInterval is 0, breathe block will be created every day.
+breatheBlockInterval = 0
+# Size of account cache
+accountCacheSize = 30000
+# Size of signature cache
+signatureCacheSize = 30000
+# Running mode when start up, 0: Normal, 1: TransferOnly, 2: RecoverOnly
+startMode = 0
+# Concurrency of OrderKeeper, should be power of 2
+orderKeeperConcurrency = 2
+# Days count back for breathe block
+breatheBlockDaysCountBack = 7
+
+[addr]
+# Bech32PrefixAccAddr defines the Bech32 prefix of an account's address
+bech32PrefixAccAddr = "bnb"
+# Bech32PrefixAccPub defines the Bech32 prefix of an account's public key
+bech32PrefixAccPub = "bnbp"
+# Bech32PrefixValAddr defines the Bech32 prefix of a validator's operator address
+bech32PrefixValAddr = "bva"
+# Bech32PrefixValPub defines the Bech32 prefix of a validator's operator public key
+bech32PrefixValPub = "bvap"
+# Bech32PrefixConsAddr defines the Bech32 prefix of a consensus node address
+bech32PrefixConsAddr = "bca"
+# Bech32PrefixConsPub defines the Bech32 prefix of a consensus node public key
+bech32PrefixConsPub = "bcap"
+
+##### publication related configurations #####
+[publication]
+# configurations ends with Kafka can be a semi-colon separated host-port list
+# Whether we want publish market data (this includes trades and order)
+publishOrderUpdates = true
+orderUpdatesTopic = "orders"
+orderUpdatesKafka = "127.0.0.1:9092"
+
+# Whether we want publish account balance to notify browser db indexer persist latest account balance change
+publishAccountBalance = true
+accountBalanceTopic = "accounts"
+accountBalanceKafka = "127.0.0.1:9092"
+
+# Whether we want publish order book changes
+publishOrderBook = true
+orderBookTopic = "orders"
+orderBookKafka = "127.0.0.1:9092"
+
+# Whether we want publish block fee changes
+publishBlockFee = true
+blockFeeTopic = "accounts"
+blockFeeKafka = "127.0.0.1:9092"
+
+# Whether we want publish transfers
+publishTransfer = true
+transferTopic = "transfers"
+transferKafka = "127.0.0.1:9092"
+
+# Global setting
+publicationChannelSize = "10000"
+publishKafka = false
+publishLocal = true
+# max size in megabytes of marketdata json file before rotate
+localMaxSize = 1024
+# max days of marketdata json files to keep before deleted
+localMaxAge = 7
+
+[log]
+
+# Write logs to console instead of file
+logToConsole = false
+
+## The below parameters take effect only when logToConsole is false
+# Log file root, if not set, use home path
+logFileRoot = ""
+# Log file path relative to log file root path
+logFilePath = "bnc.log"
+# Number of logs keep in memory before writing to file
+logBuffSize = 10000
