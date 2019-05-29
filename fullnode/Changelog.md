@@ -1,9 +1,13 @@
 # Changelog
-## 0.5.8
 
-*April 23th*
+## 0.5.9
 
-This is the first public release of Binance Chain Full node for mainnet
+*May 28th*
+
+**Imoprovements**
+
+* Support asynchronously handling websocket requests
+* Fix minor issues to improve stablity
 
 ## 0.5.8
 
