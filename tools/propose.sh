@@ -152,7 +152,7 @@ done
 
 # Get deposit amount
 while true; do
-    echo "What is the deposit BNB amount for Listing (real number)? (you should deposit 1000 BNB in mainnet and 800 BNB in testnet)"
+    echo "What is the deposit BNB amount for Listing (real number)? (you should deposit 1000 BNB in mainnet and 2000 BNB in testnet)"
     read deposit_amount
 
     result=$(echo ${deposit_amount} | grep "^[1-9][0-9]*$")
