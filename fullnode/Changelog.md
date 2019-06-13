@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.10
+*June 13th*
+**Imoprovements**
+* Fix  issues with AppHash conflicts when running `state-sync`
+
 ## 0.5.9
 
 *May 28th*
