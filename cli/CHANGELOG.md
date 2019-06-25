@@ -1,4 +1,12 @@
 # Changelog
+
+## 0.6.0 
+
+*June 25th*
+
+**New Feature**
+* Offline Transactions Signing: `bnbcli` support generating and signing all types of transactions offline, then broadcast them. This feature will let users generate and sign their transactions at an offline machine, then use another machine to broadcast it to the network
+
 ## 0.5.8.1
 
 *April 24th*
