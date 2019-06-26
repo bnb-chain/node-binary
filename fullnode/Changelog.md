@@ -1,7 +1,7 @@
 # Changelog
 
 ## 0.6.0
-*June 25th*
+*June 26th*
 
 **New Features**
 
