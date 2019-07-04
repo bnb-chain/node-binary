@@ -141,7 +141,7 @@ max_subscription_clients = 100
 max_subscriptions_per_client = 5
 
 # How long to wait for a tx to be committed during /broadcast_tx_commit.
-# WARNING: Using a value larger than 10s willp result in increasing the
+# WARNING: Using a value larger than 10s will result in increasing the
 # global HTTP write timeout, which applies to all connections and endpoints.
 # See https://github.com/tendermint/tendermint/issues/3435
 timeout_broadcast_tx_commit = "10s"
@@ -229,22 +229,6 @@ allow_duplicate_ip = true
 # Peer connection configuration.
 handshake_timeout = "20s"
 dial_timeout = "3s"
-
-##### dbcache configuration options #####
-[dbcache]
-# OpenFilesCacheCapacity defines the capacity of the open files caching.
-open_files_cache_capacity = 1024
-
-# BlockCacheCapacity defines the capacity of the 'sorted table' block caching.
-block_cache_capacity = 8388608
-
-# WriteBuffer defines maximum size of a 'memdb' before flushed to 'sorted table'.
-write_buffer = 4194304
-
-# Filter defines an 'effective filter' to use. An 'effective filter'
-# if defined will be used to generate per-table filter block.
-# Greater than 0 would creates a new initialized bloom filter for given bitsPerKey.
-bits_per_key = 10
 
 ##### mempool configuration options #####
 [mempool]
@@ -334,7 +318,7 @@ indexer = "null"
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = true
+prometheus = false
 
 # Address to listen for Prometheus collector(s) connections
 prometheus_listen_addr = ":28660"

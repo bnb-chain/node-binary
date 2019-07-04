@@ -208,7 +208,7 @@ recv_rate = 102428800
 ping_interval = "1m0s"
 
 # Maximum wait time for pongs
-pong_timeout = "450s"
+pong_timeout = "45s"
 
 # Set true to enable the peer-exchange reactor
 pex = true
@@ -228,22 +228,6 @@ allow_duplicate_ip = true
 # Peer connection configuration.
 handshake_timeout = "20s"
 dial_timeout = "3s"
-
-##### dbcache configuration options #####
-[dbcache]
-# OpenFilesCacheCapacity defines the capacity of the open files caching.
-open_files_cache_capacity = 1024
-
-# BlockCacheCapacity defines the capacity of the 'sorted table' block caching.
-block_cache_capacity = 8388608
-
-# WriteBuffer defines maximum size of a 'memdb' before flushed to 'sorted table'.
-write_buffer = 4194304
-
-# Filter defines an 'effective filter' to use. An 'effective filter'
-# if defined will be used to generate per-table filter block.
-# Greater than 0 would creates a new initialized bloom filter for given bitsPerKey.
-bits_per_key = 10
 
 ##### mempool configuration options #####
 [mempool]
@@ -333,7 +317,7 @@ indexer = "null"
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = true
+prometheus = false
 
 # Address to listen for Prometheus collector(s) connections
 prometheus_listen_addr = ":28660"
