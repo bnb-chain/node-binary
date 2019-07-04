@@ -205,7 +205,7 @@ send_rate = 52428800
 recv_rate = 102428800
 
 # Interval to send pings
-ping_interval = "10m0s"
+ping_interval = "1m0s"
 
 # Maximum wait time for pongs
 pong_timeout = "450s"
