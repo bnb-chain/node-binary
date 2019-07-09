@@ -16,7 +16,7 @@ moniker = "xxx"
 fast_sync = true
 
 # As state sync is an experimental feature, this switch can totally disable it on core network nodes (validator, witness)
-state_sync_reactor = true
+state_sync_reactor = false
 
 # If this node is many days behind the tip of the chain, StateSyncHeight
 # allows them to catchup quickly by downloading app state (without historical blocks)
@@ -24,7 +24,7 @@ state_sync_reactor = true
 # <0 - turn off state sync
 # =0 - sync from peer's latest height
 # >0 - sync from that height
-state_sync_height = 0
+state_sync_height = -1
 
 # Database backend: leveldb | memdb | cleveldb
 db_backend = "leveldb"
@@ -60,7 +60,7 @@ node_key_file = "config/node_key.json"
 abci = "socket"
 
 # TCP or UNIX socket address for the profiling server to listen on
-prof_laddr = ":9060"
+prof_laddr = ":9062"
 
 # If true, query the ABCI app on connecting to a new peer
 # so the app can decide if we should keep the connection or not
@@ -75,7 +75,7 @@ with_app_stat = true
 [rpc]
 
 # TCP or UNIX socket address for the RPC server to listen on
-laddr = "tcp://0.0.0.0:26657"
+laddr = "tcp://0.0.0.0:27147"
 
 # A list of origins a cross-domain request can be executed from
 # Default value '[]' disables cors support
@@ -161,7 +161,7 @@ tls_key_file = ""
 [p2p]
 
 # Address to listen for incoming connections
-laddr = "tcp://0.0.0.0:26656"
+laddr = "tcp://0.0.0.0:27146"
 
 # Address to advertise to peers for them to dial
 # If empty, will use the same port as the laddr,
@@ -170,10 +170,9 @@ laddr = "tcp://0.0.0.0:26656"
 external_address = ""
 
 # Comma separated list of seed nodes to connect to
-seeds = ""
-
+seeds = "b323708b0bd429a95154ff0a287f0f42f432cb62@34.247.169.233:27146,bb721fe089e83d42bcb8f629f8efe0e4af888fde@52.197.88.253:27146,289f680c0c78465dbf1d86c2260dd032d4541a4c@34.227.165.88:27146"
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = "2726550182cbc5f4618c27e49c730752a96901e8@a41086771245011e988520ad55ba7f5a-5f7331395e69b0f3.elb.us-east-1.amazonaws.com:27146,381934b9b3f862d1e81e699d8e1d38929f330cef@aa13359cd244f11e988520ad55ba7f5a-c3963b80c9b991b7.elb.us-east-1.amazonaws.com:27146,fe5eb5a945598476abe4826a8d31b9f8da7b1a54@aa35ed7c1244f11e988520ad55ba7f5a-bbfb4fe79dee5d7e.elb.us-east-1.amazonaws.com:27146,8825b32e3abec71d772abf009ba1956d452be1fa@aa58a7e44244f11e988520ad55ba7f5a-45d504e63bacb8dd.elb.us-east-1.amazonaws.com:27146,9612b570bffebecca4776cb4512d08e252119005@a0b88b324243a11e994280efee3352a7-96b6996626c6481d.elb.ap-northeast-1.amazonaws.com:27146,8c379d4d3b9995c712665dc9a9414dbde5b30483@aa1e4d0d1243a11e9a951063f6065739-7a82be90a58744b6.elb.ap-northeast-1.amazonaws.com:27146,7156d461742e2a1e569fd68426009c4194830c93@aa841c226243a11e9a951063f6065739-eee556e439dc6a3b.elb.ap-northeast-1.amazonaws.com:27146"
+persistent_peers = ""
 # UPNP port forwarding
 upnp = false
 
@@ -206,10 +205,10 @@ send_rate = 52428800
 recv_rate = 102428800
 
 # Interval to send pings
-ping_interval = "10m0s"
+ping_interval = "1m0s"
 
 # Maximum wait time for pongs
-pong_timeout = "450s"
+pong_timeout = "45s"
 
 # Set true to enable the peer-exchange reactor
 pex = true
