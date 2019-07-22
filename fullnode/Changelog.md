@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.6.1
+*Jul 22th*
+**New Features**
+* Introduce Customized Scripts and Transfer Memo Validation
+* Add `--dry` flag in `bnbcli` to get encoded signed transaction in hex
+
+**Bug Fixes**
+* Add chain-id check for sign command
+
+**Tendermint Changes**
+
+* More configuration in config file
+* More P2P metrics
+
+
 ## 0.6.0
 *June 26th*
 
