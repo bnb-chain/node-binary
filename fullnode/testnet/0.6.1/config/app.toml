@@ -17,13 +17,15 @@ breatheBlockDaysCountBack = 7
 
 [upgrade]
 # Block height of BEP6 upgrade
-BEP6Height = 24020000 
+BEP6Height = 24020000
 # Block height of BEP9 upgrade
 BEP9Height = 24020000
 # Block height of BEP10 upgrade
-BEP10Height = 24020000 
+BEP10Height = 24020000
 # Block height of BEP19 upgrade
 BEP19Height = 24020000
+# Block height of BEP12 upgrade
+BEP12Height = 29794000
 
 [addr]
 # Bech32PrefixAccAddr defines the Bech32 prefix of an account's address
