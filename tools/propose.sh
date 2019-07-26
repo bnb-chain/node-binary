@@ -39,7 +39,7 @@ function hundreds2words() {
 ####### convert number to english
 
 testnet_chain_id="Binance-Chain-Nile"
-testnet_node="http://data-seed-pre-0-s3.binance.org:80"
+testnet_node="http://data-seed-pre-2-s1.binance.org:80"
 
 mainnet_chain_id="Binance-Chain-Tigris"
 mainnet_node="http://dataseed1.binance.org:80"
