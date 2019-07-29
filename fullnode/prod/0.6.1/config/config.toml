@@ -60,7 +60,7 @@ node_key_file = "config/node_key.json"
 abci = "socket"
 
 # TCP or UNIX socket address for the profiling server to listen on
-prof_laddr = ":9062"
+prof_laddr = ""
 
 # If true, query the ABCI app on connecting to a new peer
 # so the app can decide if we should keep the connection or not
