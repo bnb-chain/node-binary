@@ -24,6 +24,8 @@ BEP9Height = 20300000
 BEP10Height = 20300000
 # Block height of BEP19 upgrade
 BEP19Height = 20300000
+# Block height of BEP12 upgrade
+BEP12Height = 25380000
 
 [addr]
 # Bech32PrefixAccAddr defines the Bech32 prefix of an account's address
