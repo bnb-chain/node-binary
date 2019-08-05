@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.1
+*Aug 5th*
+ **New Feature**
+* Add `memo-check`function
+* Add transaction hex generation
+
 ## 0.6.0 
 
 *June 26th*
@@ -22,4 +28,3 @@ This is the second public release of Binance Chain Client for mainnet and testne
 *April 23th*
 
 This is the first public release of Binance Chain Client for mainnet.
-
