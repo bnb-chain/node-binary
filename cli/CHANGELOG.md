@@ -1,12 +1,25 @@
 # Changelog
 
+## 0.6.1-TSS
+*Aug 27th*
+ **New Feature**
+* Add Threshold Signature Scheme (TSS) support:
+1. To add a tss key into bnbcli’s keystore:
+Tss keygen command will automatically add generated secret share into default keystore (~/.bnbcli) with name “tss_<moniker>_<vault_name>”
+2. User can manually specify tss’s home, vault_name and a customized bnbcli home like:
+```
+bnbcli keys add --home ~/.customized_cli --tss -t tss --tss-home ~/.test1 --tss-vault “default” my_name
+```
+
+
+
 ## 0.6.1
 *Aug 5th*
  **New Feature**
 * Add `memo-check`function
 * Add transaction hex generation
 
-## 0.6.0 
+## 0.6.0
 
 *June 26th*
 
