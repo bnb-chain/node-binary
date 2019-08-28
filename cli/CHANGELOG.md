@@ -11,6 +11,9 @@ Tss keygen command will automatically add generated secret share into default ke
 bnbcli keys add --home ~/.customized_cli --tss -t tss --tss-home ~/.test1 --tss-vault “default” my_name
 ```
 
+## First Release of TSS Binary
+
+This is the first release of Threshold Signature Scheme (TSS) binaries. You can take a look at the user guide first: https://docs.google.com/document/d/1Ad07tzKuytEvGzTiFtwAdEQ3W_Cq0dtFu-1HivguBFA/edit#heading=h.yzixbmbzmdb7
 
 
 ## 0.6.1
