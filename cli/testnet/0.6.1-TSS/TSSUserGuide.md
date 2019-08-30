@@ -5,11 +5,9 @@
 Please note, "--password" option should only be used in testing.
 Without this option, the cli would ask interactive input and confirm
 
-0. build tss executable binary
+0. download tss executable binary
 ```
-git clone https://github.com/binance-chain/tss
-cd tss
-go build
+ wget https://raw.githubusercontent.com/binance-chain/node-binary/master/cli/testnet/0.6.1-TSS/{platform}/tss
 ```
 
 1. init 3 parties
