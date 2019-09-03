@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.1-hotfix
+*Sep 3rd*
+**Bug Fix**
+*  [\#109](https://github.com/binance-chain/node-binary/issues/109)fix can't bring bnbchaind back when there is an order whose symbol is lower case
+
 ## 0.6.1
 *Jul 22th*
 **New Features**
