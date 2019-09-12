@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.6.2
+*Sep 12th*
+
+** New Features**
+
+* BEP3, atomic swap
+* Add memo to transfer kafka message
+* Improve the handle of Kafka server connection error
+* API Server Improvements: Add support for querying time-lock information.
+
+**Tendermint Changes**
+
+* Introduce Hot-Sync
+* Support Index service recovery and add indexHeight in Status api
+* Performance improvements
+
 ## 0.6.1-hotfix
 *Sep 3rd*
 **Bug Fix**

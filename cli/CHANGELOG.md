@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.2
+*Sept 12th*
+
+**New Feature**
+* Add more checks on account flag commands
+* Add levels parameter to depth ABCI query
+* Fix the issue of generating order-id in offline mode
+
 ## 0.6.1-TSS
 *Aug 27th*
  **New Feature**
