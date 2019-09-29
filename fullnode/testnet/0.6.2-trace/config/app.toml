@@ -85,6 +85,10 @@ localMaxSize = 1024
 # max days of marketdata json files to keep before deleted
 localMaxAge = 7
 
+auth = false
+kafkaUserName = ""
+kafkaPassword = ""
+
 [log]
 
 # Write logs to console instead of file
