@@ -89,6 +89,9 @@ auth = false
 kafkaUserName = ""
 kafkaPassword = ""
 
+# stop process when publish to Kafka failed
+stopOnKafkaFail = true
+
 [log]
 
 # Write logs to console instead of file
