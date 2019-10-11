@@ -344,3 +344,9 @@ max_open_connections = 3
 
 # Instrumentation namespace
 namespace = "tendermint"
+
+[dbcache]
+open_files_cache_capacity = 1024
+block_cache_capacity = 524288000
+write_buffer = 60194304
+bits_per_key = 10
