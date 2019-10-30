@@ -1,7 +1,18 @@
-# node-binary
+# Binance Chain Client
 Binaries for full nodes, light-weighted clients and user clients.
 
 > Note: writeup below is in-progress by Daniel. Intent is to create a more beginner-friendly tutorial and writeup. Will add to `docs-site` subsequently
+
+# Installation Script
+
+```
+wget https://get.binance.org | sh
+```
+
+Installation script will walk you through which version of the Binance Chain client you'd like to install
+
+# Manual installation
+
 
 # Light Client
 
