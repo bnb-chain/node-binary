@@ -1,70 +1,53 @@
 # Binance Chain Client
-Binaries for full nodes, light-weighted clients and user clients.
 
-> Note: writeup below is in-progress by Daniel. Intent is to create a more beginner-friendly tutorial and writeup. Will add to `docs-site` subsequently
+[Binance Chain](https://www.binance.org/) is a blockchain developed by Binance and its community, that focuses on building a performant matching engine and exchange over a decentralized network. 
 
-# Installation Script
+* [Match logic](https://docs.binance.org/match.html)
+* [Anti-front running](https://docs.binance.org/anti-frontrun.html)
 
-```
-wget https://get.binance.org | sh
-```
+Binance Chain clients are released as compiled executables in this repo, with a few variants:
 
-Installation script will walk you through which version of the Binance Chain client you'd like to install
+* [Full Node](https://docs.binance.org/fullnode.html): downloads full blockchain and relays transactions
+* [Light Client](https://docs.binance.org/light-client.html): does not sync state or relay transactions
 
-# Manual installation
+For more on which client to run, see [Light Client vs Full Node](https://docs.binance.org/light-client.html#light-client-versus-full-node).
 
+## Installation Script
 
-# Light Client
+We have a community-maintained installer script (`install.sh`) that takes care of chain directory setup. This uses the following defaults:
 
-To run a Binance Chain node, you'll need to download a _client_ that you'll run on your local machine or server. Every node in the Binance Chain network runs the same _client_, which ensures that they know how to network and interface with each other.
-
-Currently, Binance Chain distributes a compiled version of the _client_, which are called _binaries_. These can be found in the [`binance-chain/node-binaries` repo](https://github.com/binance-chain/node-binary).
-
-## Installing Git LFS
-
-The [`binance-chain/node-binaries` repo](https://github.com/binance-chain/node-binary) currently stores all versions of the node-binaries, and is a total download of >2GB.
-
-Due to the size large size, we use [Git Large File Storage](https://git-lfs.github.com/) to only pull down the relevant version of the client when needed.
-
-![](images/git-lfs-homepage.png)
-
-### Step 1: Install [Git LFS](https://git-lfs.github.com/)
+* Home folder in `~/.bnbchaind`
+* Client executables stored in `/usr/local/bin` (i.e. `light` or `bnbchaind`)
 
 ```shell
-# Mac
-brew install git-lfs
+# One-line install
+wget https://raw.githubusercontent.com/onggunhao/node-binary/master/install.sh | sh
 ```
 
+> In the future, we may release an official installer script  
+> e.g. `wget https://get.binance.org | sh`
+
+## Manual Installation
+
+We currently use this repo to store historical versions of the compiled `node-binaries`.
+
+### Running a Full Node
+
+* Step-by-step tutorial at [full node docs](https://docs.binance.org/fullnode.html)
+* [Common issues when running a full node](https://docs.binance.org/fullnodeissue.html#common-issues-when-running-a-full-node)
+
+### Running a Light Client
+
+* Step-by-step tutorial at [light client docs](https://docs.binance.org/light-client.html#light-client-versus-full-node)
+
+## Uninstalling
+
+* Delete the `~/bnbchaind` directory and subdirectories
+* Delete the `bnbchaind` or `lightd` executable
+
+_**Example**: If you installed using installation script_:
 ```
-git lfs install
+rm -rf ~/.bnbchaind
+rm /usr/local/bin/lightd
+rm /usr/local/bin/bnbchaind
 ```
-
-
-https://docs.binance.org/light-client.html
-
-If you encounter the following error, there is some issue with your `Git LFS` installation.
-
-```
-~ line 1: version: command not found
-~ line 2: oid: command not found
-~ <directory>: 4432 No such file or directory
-```
-
-To solve this error, use
-
-```
-wget
-```
-
-https://github.com/binance-chain/node-binary/issues/122
-
-# Full Node
-
-https://docs.binance.org/fullnode.html
-https://docs.binance.org/exchange-integration.html#running-a-full-node
-
-# API Server
-
-https://docs.binance.org/api-reference/api-server.html (running an API server on-machine)
-
--   [ ] What are the benefits of running an API server on-machine?
