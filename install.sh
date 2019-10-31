@@ -18,7 +18,8 @@ elif [[ "$OSTYPE" == "win32" ]]; then
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
   DETECTED_OS="linux"
 else
-  echo "Error: unable to detect operating system. Please install manually by referring to $DOCS_WEB_LINK"
+  FULLNODE_echo "Error: unable to detect operating system. Please install manually by referring to $DOCS_WEB_LINK"
+  LIGHTNODE_DOCS_WEB_LINK=""
   exit 1
 fi
 
@@ -31,14 +32,37 @@ if [ ! -x /usr/bin/wget ]; then
   }
 fi
 
+echo "@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@"
+echo "@@@@@@@@@@@@@@@@@     @@@@@@@@@@@@@@@@@"
+echo "@@@@@@@@@@@@@@@         @@@@@@@@@@@@@@@"
+echo "@@@@@@@@@@@@@             @@@@@@@@@@@@@"
+echo "@@@@@@@@@@@                 @@@@@@@@@@@"
+echo "@@@@@@@@@         @@@         @@@@@@@@@"
+echo "@@@@@@@@        @@@@@@@        @@@@@@@@"
+echo "@@@@@@@@@@    @@@@@@@@@@@    @@@@@@@@@@"
+echo "@@@   @@@@@@@@@@@@   @@@@@@@@@@@@   @@@"
+echo "@       @@@@@@@@       @@@@@@@@       @"
+echo "@       @@@@@@@@       @@@@@@@@       @"
+echo "@@@   @@@@@@@@@@@@   @@@@@@@@@@@@   @@@"
+echo "@@@@@@@@@@    @@@@@@@@@@@    @@@@@@@@@@"
+echo "@@@@@@@@        @@@@@@@        @@@@@@@@"
+echo "@@@@@@@@@         @@@         @@@@@@@@@"
+echo "@@@@@@@@@@@                 @@@@@@@@@@@"
+echo "@@@@@@@@@@@@@             @@@@@@@@@@@@@"
+echo "@@@@@@@@@@@@@@@         @@@@@@@@@@@@@@@"
+echo "@@@@@@@@@@@@@@@@@     @@@@@@@@@@@@@@@@@"
+echo ""
+
 echo "========== Binance Chain Node Installation =========="
-echo "Version 0.1.beta"
+echo "Installer Version: 0.1.beta"
 echo "Detected OS: $DETECTED_OS"
+echo "====================================================="
 
 # Variables
 BNC_HOME_DIR="$HOME/.bnbchaind"
 BNC_HOME_CONFIG_DIR="$HOME/.bnbchaind/config"
-DOCS_WEB_LINK="https://docs.binance.org/fullnode.html"
+FULLNODE_DOCS_WEB_LINK="https://docs.binance.org/fullnode.html"
+LIGHTNODE_DOCS_WEB_LINK="https://docs.binance.org/light-client.html"
 GH_REPO_URL="https://github.com/binance-chain/node-binary"
 GH_RAW_PREFIX="raw/master"
 GH_REPO_DL_URL="$GH_REPO_URL/$GH_RAW_PREFIX"
@@ -54,31 +78,15 @@ OPTION_VERSION_NUMBER=("0.5.8" "0.5.9" "0.5.10" "0.6.0" "0.6.1" "0.6.2")
 OPTION_NODE_TYPE=("Full Node" "Light Node")
 OPTION_NETWORK=("Mainnet" "Testnet")
 
-# Detect previous installation and create .bnbchaind
-echo "... creating $BNC_HOME_DIR"
-if [ -d "$BNC_HOME_DIR" ]; then
-  echo "... Error: Binance Chain client has already been installed"
-  echo "... Error: Please remove contents of ${BNC_HOME_DIR} before reinstalling."
-  exit 1
-else
-  mkdir -p $BNC_HOME_CONFIG_DIR
-  cd $BNC_HOME_DIR
-fi
-if [ -f "$USR_LOCAL_BIN/bnbchaind" ]; then
-  echo "... Error: Binance Chain client has already been installed"
-  echo "... Error: Please remove bnbchaind from /usr/local/bin before reinstalling."
-  exit 1
-fi
-
-echo "...................................."
+echo "... Choose version of Binance Chain node to install"
 PS3='Choose Version Number: '
 select opt in "${OPTION_VERSION_NUMBER[@]}"; do
   VERSION_NUMBER="$opt"
   break
 done
 
-echo "...................................."
-PS3='Choose node type: '
+echo "... Choose node type to install"
+PS3='Choose Node Type: '
 select opt in "${OPTION_NODE_TYPE[@]}"; do
   case $opt in
   "Full Node")
@@ -92,8 +100,8 @@ select opt in "${OPTION_NODE_TYPE[@]}"; do
   esac
 done
 
-echo "...................................."
-PS3='Choose network type: '
+echo "... Choose Network Version"
+PS3='Choose Network Type: '
 select opt in "${OPTION_NETWORK[@]}"; do
   case $opt in
   "Mainnet")
@@ -119,27 +127,48 @@ NODE_BINARY_DOWNLOAD_URL="$GH_BASE_URL/$DETECTED_OS"
 # Future improvement: should refactor in the future with releases in a single .zip or .tar.gz file
 if [ $NODE_TYPE == "fullnode" ]; then
 
+  # Detect previous installation and create .bnbchaind
+  echo "... creating $BNC_HOME_DIR"
+  if [ -d "$BNC_HOME_DIR" ]; then
+    echo "... Error: Binance Chain client has already been installed"
+    echo "... Error: Please remove contents of ${BNC_HOME_DIR} before reinstalling."
+    exit 1
+  else
+    mkdir -p $BNC_HOME_CONFIG_DIR
+    cd $BNC_HOME_DIR
+  fi
+  if [ -f "$USR_LOCAL_BIN/bnbchaind" ]; then
+    echo "... Error: Binance Chain client has already been installed"
+    echo "... Error: Please remove bnbchaind from /usr/local/bin before reinstalling."
+    exit 1
+  fi
+
   # Future improvement: should be refactored into helper function
   cd $USR_LOCAL_BIN
+  echo "... Downloading bnbchaind executable"
   wget -q --show-progress "$NODE_BINARY_DOWNLOAD_URL/bnbchaind"
   chmod 755 "./bnbchaind"
 
   cd $BNC_HOME_CONFIG_DIR
+  echo "... Downloading config files for version"
   wget -q --show-progress "$CONFIG_DOWNLOAD_URL/app.toml"
   wget -q --show-progress "$CONFIG_DOWNLOAD_URL/config.toml"
   wget -q --show-progress "$CONFIG_DOWNLOAD_URL/genesis.json"
 
   # Add installed version of Binance Chain to path
-  echo "... installation successful!"
+  echo "... Installation successful!"
   echo "... \`bnbchaind\` added to $USR_LOCAL_BIN"
-  echo "... visit full node documentation at $DOCS_WEB_LINK"
-  echo "... run \`bnbchaind \` to see list of available commands"
+  echo "... Visit full node documentation at $DOCS_WEB_LINK"
+  echo "... Run \`bnbchaind\` to see list of available commands"
 
 elif [ $NODE_TYPE == "lightnode" ]; then
-  wget "$NODE_BINARY_DOWNLOAD_URL/lightd"
+  cd $USR_LOCAL_BIN
+  echo "... Downloading lightd executable"
+  wget -q --show-progress "$NODE_BINARY_DOWNLOAD_URL/lightd"
+  chmod 755 "./lightd"
 
-  # Add installed version of Binance Chain to path
-  echo "======= Installation complete ======="
-  echo "Please add lightd to your path"
-  echo "  export PATH=\$PATH:/usr/local/.bnbchaind"
+  echo "... Installation successful!"
+  echo "... \`lightd\` added to $USR_LOCAL_BIN"
+  echo "... Visit full node documentation at $DOCS_WEB_LINK"
+  echo "... Run \`lightd\` to see list of available commands"
 fi
