@@ -43,11 +43,32 @@ GH_REPO_URL="https://github.com/binance-chain/node-binary"
 GH_RAW_PREFIX="raw/master"
 GH_REPO_DL_URL="$GH_REPO_URL/$GH_RAW_PREFIX"
 
+# Install location
+# Note: /usr/local/bin choice from https://unix.stackexchange.com/questions/259231/difference-between-usr-bin-and-usr-local-bin
+# Future improvement: needs uninstall script (brew uninstall) that removes executable from bin
+USR_LOCAL_BIN="/usr/local/bin"
+
 # Version selection options
 # Future improvement: pull dynamically from version list
 OPTION_VERSION_NUMBER=("0.5.8" "0.5.9" "0.5.10" "0.6.0" "0.6.1" "0.6.2")
 OPTION_NODE_TYPE=("Full Node" "Light Node")
 OPTION_NETWORK=("Mainnet" "Testnet")
+
+# Detect previous installation and create .bnbchaind
+echo "... creating $BNC_HOME_DIR"
+if [ -d "$BNC_HOME_DIR" ]; then
+  echo "... Error: Binance Chain client has already been installed"
+  echo "... Error: Please remove contents of ${BNC_HOME_DIR} before reinstalling."
+  exit 1
+else
+  mkdir -p $BNC_HOME_CONFIG_DIR
+  cd $BNC_HOME_DIR
+fi
+if [ -f "$USR_LOCAL_BIN/bnbchaind" ]; then
+  echo "... Error: Binance Chain client has already been installed"
+  echo "... Error: Please remove bnbchaind from /usr/local/bin before reinstalling."
+  exit 1
+fi
 
 echo "...................................."
 PS3='Choose Version Number: '
@@ -94,44 +115,31 @@ GH_BASE_URL="$GH_REPO_URL/$GH_RAW_PREFIX/$VERSION_PATH"
 CONFIG_DOWNLOAD_URL="$GH_BASE_URL/config"
 NODE_BINARY_DOWNLOAD_URL="$GH_BASE_URL/$DETECTED_OS"
 
-mkdir temp-bnbchain-installer
-cd temp-bnbchain-installer
-
 # wget the binary, config files
 # Future improvement: should refactor in the future with releases in a single .zip or .tar.gz file
 if [ $NODE_TYPE == "fullnode" ]; then
+
   # Future improvement: should be refactored into helper function
+  cd $USR_LOCAL_BIN
+  wget -q --show-progress "$NODE_BINARY_DOWNLOAD_URL/bnbchaind"
+  chmod 755 "./bnbchaind"
 
-  # Create .bnbchaind in root
-  echo "... creating $BNC_HOME_DIR"
-  if [ -d "$BNC_HOME_DIR" ]; then
-    echo "Error: Binance Chain client has already been installed. Please remove contents of ${BNC_HOME_DIR} before reinstalling."
-    exit 1
-  else
-    mkdir -p $BNC_HOME_CONFIG_DIR
-  fi
+  cd $BNC_HOME_CONFIG_DIR
+  wget -q --show-progress "$CONFIG_DOWNLOAD_URL/app.toml"
+  wget -q --show-progress "$CONFIG_DOWNLOAD_URL/config.toml"
+  wget -q --show-progress "$CONFIG_DOWNLOAD_URL/genesis.json"
 
-  wget "$CONFIG_DOWNLOAD_URL/app.toml"
-  wget "$CONFIG_DOWNLOAD_URL/config.toml"
-  wget "$CONFIG_DOWNLOAD_URL/genesis.json"
-  wget "$NODE_BINARY_DOWNLOAD_URL/bnbchaind"
+  # Add installed version of Binance Chain to path
+  echo "... installation successful!"
+  echo "... \`bnbchaind\` added to $USR_LOCAL_BIN"
+  echo "... visit full node documentation at $DOCS_WEB_LINK"
+  echo "... run \`bnbchaind \` to see list of available commands"
 
-  # Copy config files over to ~/.bnbchaind
-  echo "... copying version-specfic files to $BNC_HOME_DIR"
-  for i in $(ls $pwd); do
-    echo "    $i"
-    cp "$pwd/$i" $BNC_HOME_CONFIG_DIR
-  done
 elif [ $NODE_TYPE == "lightnode" ]; then
-  echo "$NODE_BINARY_DOWNLOAD_URL/lightd"
+  wget "$NODE_BINARY_DOWNLOAD_URL/lightd"
+
+  # Add installed version of Binance Chain to path
+  echo "======= Installation complete ======="
+  echo "Please add lightd to your path"
+  echo "  export PATH=\$PATH:/usr/local/.bnbchaind"
 fi
-
-# # Connect to seed
-# # TODO(Dan): Find more elegant way to load variables from config.toml
-# . "$SELECTED_BINARY_PATH/config.toml"
-# echo "$seeds"
-
-# # Add installed version of Binance Chain to path
-echo "======= Installation complete ======="
-echo "Please add bnbchaind to your path"
-echo "  export PATH=\$PATH:/usr/local/.bnbchaind/bin"
