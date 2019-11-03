@@ -21,11 +21,11 @@ We have a community-maintained installer script (`install.sh`) that takes care o
 
 ```shell
 # One-line install
-wget https://raw.githubusercontent.com/onggunhao/node-binary/master/install.sh | sh
+sh <(wget -qO- https://raw.githubusercontent.com/onggunhao/node-binary/master/install.sh)
 ```
 
 > In the future, we may release an official installer script  
-> e.g. `wget https://get.binance.org | sh`
+> e.g. `sh <(wget -qO- https://get.binance.org)`
 
 ## Manual Installation
 
