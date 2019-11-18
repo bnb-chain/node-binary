@@ -59,8 +59,9 @@ echo "Detected OS: $DETECTED_OS"
 echo "====================================================="
 
 # Variables
-BNC_HOME_DIR="$HOME/.bnbchaind"
-BNC_HOME_CONFIG_DIR="$HOME/.bnbchaind/config"
+read -e  -p "Hello, which directory is your home directory?" BNC_HOME_DIR
+BNC_HOME_DIR=${BNC_HOME_DIR:-"$HOME/.bnbchaind"}
+BNC_HOME_CONFIG_DIR=$BNC_HOME_DIR"/config"
 FULLNODE_DOCS_WEB_LINK="https://docs.binance.org/fullnode.html"
 LIGHTNODE_DOCS_WEB_LINK="https://docs.binance.org/light-client.html"
 GH_REPO_URL="https://github.com/binance-chain/node-binary"
@@ -71,6 +72,20 @@ GH_REPO_DL_URL="$GH_REPO_URL/$GH_RAW_PREFIX"
 # Note: /usr/local/bin choice from https://unix.stackexchange.com/questions/259231/difference-between-usr-bin-and-usr-local-bin
 # Future improvement: needs uninstall script (brew uninstall) that removes executable from bin
 USR_LOCAL_BIN="/usr/local/bin"
+echo "... Choose Network Version"
+PS3='Choose Network Type: '
+select opt in "${OPTION_NETWORK[@]}"; do
+  case $opt in
+  "Mainnet")
+    NETWORK="prod"
+    break
+    ;;
+  "Testnet")
+    NETWORK="testnet"
+    break
+    ;;
+  esac
+done
 
 # Version selection options
 # Future improvement: pull dynamically from version list
@@ -100,20 +115,7 @@ select opt in "${OPTION_NODE_TYPE[@]}"; do
   esac
 done
 
-echo "... Choose Network Version"
-PS3='Choose Network Type: '
-select opt in "${OPTION_NETWORK[@]}"; do
-  case $opt in
-  "Mainnet")
-    NETWORK="prod"
-    break
-    ;;
-  "Testnet")
-    NETWORK="testnet"
-    break
-    ;;
-  esac
-done
+
 
 # Download the selected binary
 # Future improvement: versions should just be a single .zip payload (e.g. 0.6.2)
