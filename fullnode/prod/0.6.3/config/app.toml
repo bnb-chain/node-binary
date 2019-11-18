@@ -29,13 +29,13 @@ BEP12Height = 25120000
 # Block height of BEP3 upgrade
 BEP3Height = 41277000
 # Block height of FixSignBytesOverflow upgrade
-FixSignBytesOverflowHeight = 51696000
+FixSignBytesOverflowHeight = 51467800
 # Block height of LotSizeOptimization upgrade
-LotSizeUpgradeHeight = 51696000
+LotSizeUpgradeHeight = 51467800
 # Block height of changing listing rule upgrade
-ListingRuleUpgradeHeight = 51696000
+ListingRuleUpgradeHeight = 51467800
 # Block height of FixZeroBalanceHeight upgrade
-FixZeroBalanceHeight = 51696000
+FixZeroBalanceHeight = 51467800
 
 [addr]
 # Bech32PrefixAccAddr defines the Bech32 prefix of an account's address
