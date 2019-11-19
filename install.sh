@@ -73,6 +73,7 @@ GH_REPO_DL_URL="$GH_REPO_URL/$GH_RAW_PREFIX"
 # Future improvement: needs uninstall script (brew uninstall) that removes executable from bin
 USR_LOCAL_BIN="/usr/local/bin"
 echo "... Choose Network Version"
+OPTION_NETWORK=("Mainnet" "Testnet")
 PS3='Choose Network Type: '
 select opt in "${OPTION_NETWORK[@]}"; do
   case $opt in
@@ -91,7 +92,6 @@ done
 # Future improvement: pull dynamically from version list
 OPTION_VERSION_NUMBER=("0.5.8" "0.5.9" "0.5.10" "0.6.0" "0.6.1" "0.6.2")
 OPTION_NODE_TYPE=("Full Node" "Light Node")
-OPTION_NETWORK=("Mainnet" "Testnet")
 
 echo "... Choose version of Binance Chain node to install"
 PS3='Choose Version Number: '
@@ -132,7 +132,7 @@ if [ $NODE_TYPE == "fullnode" ]; then
   # Detect previous installation and create .bnbchaind
   echo "... creating $BNC_HOME_DIR"
   if [ -d "$BNC_HOME_DIR" ]; then
-    echo "... Error: Binance Chain client has already been installed"
+    echo "... Error: Binance Chain Fullnode has already been installed"
     echo "... Error: Please remove contents of ${BNC_HOME_DIR} before reinstalling."
     exit 1
   else
@@ -140,7 +140,7 @@ if [ $NODE_TYPE == "fullnode" ]; then
     cd $BNC_HOME_DIR
   fi
   if [ -f "$USR_LOCAL_BIN/bnbchaind" ]; then
-    echo "... Error: Binance Chain client has already been installed"
+    echo "... Error: Binance Chain Fullnode has already been installed"
     echo "... Error: Please remove bnbchaind from /usr/local/bin before reinstalling."
     exit 1
   fi
