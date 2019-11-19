@@ -51,3 +51,15 @@ rm -rf ~/.bnbchaind
 rm /usr/local/bin/lightd
 rm /usr/local/bin/bnbchaind
 ```
+### Common Issues and Solutions
+
+https://docs.binance.org/fullnodeissue.html
+
+# Tools
+
+1. [Airdrop Tool](https://github.com/binance-chain/chain-tooling#airdrop)
+2. [Token Issue&Listing GUI](https://github.com/binance-chain/chain-tooling/tree/airdrop/token-app)
+
+## Resrouces
+* [Dos Site](https://docs.binance.org/)
+* [Wallet](https://docs.binance.org/wallets.html)
