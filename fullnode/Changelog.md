@@ -1,12 +1,18 @@
 # Changelog
 
+## 0.6.3-hf.1
+*Nov. 21th*
+
+**Bug Fix**
+* Fix bugs with multisend
+
 ## 0.6.3
 *Nov. 11th*
 
-** New Features**
+**New Features**
 * Expose kafka version in publisher setting
 
-** Improvements**
+**Improvements**
 * Lot Size enhencement
 * Change constrains of listing transaction
 * Massive performance improvements,  especially for storage.
