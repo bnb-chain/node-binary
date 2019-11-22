@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.6.3-hotfix
+## 0.6.3-hf.1
 *Nov. 21th*
 
 **Bug Fix**
