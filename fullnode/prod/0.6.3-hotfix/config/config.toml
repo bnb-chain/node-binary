@@ -355,7 +355,7 @@ indexer = "kv"
 
 # Operator ["<", ">", ">=", "<="] belongs to range query operator.
 # Notice: only enable it in trust environment.
-enable_range_query = true
+enable_range_query = false
 
 # Comma-separated list of tags to index (by default the only tag is "tx.hash")
 #
