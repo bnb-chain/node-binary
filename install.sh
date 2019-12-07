@@ -90,7 +90,7 @@ done
 
 # Version selection options
 # Future improvement: pull dynamically from version list
-OPTION_VERSION_NUMBER=("0.5.8" "0.5.9" "0.5.10" "0.6.0" "0.6.1" "0.6.2" "0.6.3")
+OPTION_VERSION_NUMBER=("0.5.8" "0.5.9" "0.5.10" "0.6.0" "0.6.1" "0.6.2" "0.6.3" "0.6.3-hf.1")
 OPTION_NODE_TYPE=("Full Node" "Light Node")
 
 echo "... Choose version of Binance Chain node to install"
