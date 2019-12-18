@@ -59,8 +59,6 @@ echo "Detected OS: $DETECTED_OS"
 echo "====================================================="
 
 # Variables
-read -e  -p "Hello, which directory is your home directory?" BNC_HOME_DIR
-BNC_HOME_DIR=${BNC_HOME_DIR:-"$HOME/.bnbchaind"}
 BNC_HOME_CONFIG_DIR=$BNC_HOME_DIR"/config"
 FULLNODE_DOCS_WEB_LINK="https://docs.binance.org/fullnode.html"
 LIGHTNODE_DOCS_WEB_LINK="https://docs.binance.org/light-client.html"
@@ -69,9 +67,15 @@ GH_RAW_PREFIX="raw/master"
 GH_REPO_DL_URL="$GH_REPO_URL/$GH_RAW_PREFIX"
 
 # Install location
+USR_LOCAL_BIN="/usr/local/bin"
 # Note: /usr/local/bin choice from https://unix.stackexchange.com/questions/259231/difference-between-usr-bin-and-usr-local-bin
 # Future improvement: needs uninstall script (brew uninstall) that removes executable from bin
-USR_LOCAL_BIN="/usr/local/bin"
+
+# Choose Home Directory
+BNC_HOME_DIR=${BNC_HOME_DIR:-"$HOME/.bnbchaind"}
+read -e -p "Choose home directory [default: ~/.bnbchaind]:" BNC_HOME_DIR
+
+# Choose network option
 echo "... Choose Network Version"
 OPTION_NETWORK=("Mainnet" "Testnet")
 PS3='Choose Network Type: '
@@ -114,8 +118,6 @@ select opt in "${OPTION_NODE_TYPE[@]}"; do
     ;;
   esac
 done
-
-
 
 # Download the selected binary
 # Future improvement: versions should just be a single .zip payload (e.g. 0.6.2)
