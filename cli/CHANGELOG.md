@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.6.3
+*Nov 11th*
+ **New Feature**
+* Performance Improvements
+
+## 0.6.2-TSS
+*Nov 5th*
+
+**New Feature**
+* Add Threshold Signature Scheme (TSS) support v0.1.2
+
+
 ## 0.6.2
 *Sept 12th*
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.6.3-hf.1
+*Nov. 21th*
+
+**Bug Fix**
+* Fix bugs with multisend
+
+## 0.6.3
+*Nov. 11th*
+
+**New Features**
+* Expose kafka version in publisher setting
+
+**Improvements**
+* Lot Size enhencement
+* Change constrains of listing transaction
+* Massive performance improvements,  especially for storage.
+* Improve the handle of zero balance accounts
+
+**Tendermint Changes**
+Due to changes of underling Tendermint library, `ResponseCheckTx`, `ResponseDeliverTx`, `ResponseBeginBlock`, and `ResponseEndBlock` now include `Events` instead of `Tags`. Each Event contains a type and a list of attributes (list of key-value pairs) allowing for inclusion of multiple distinct events in each response.
+
 ## 0.6.2
 *Sep 12th*
 
