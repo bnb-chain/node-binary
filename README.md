@@ -27,6 +27,28 @@ sh <(wget -qO- https://raw.githubusercontent.com/onggunhao/node-binary/master/in
 > In the future, we may release an official installer script  
 > e.g. `sh <(wget -qO- https://get.binance.org)`
 
+## Docker node
+
+### Building locally
+
+```
+git clone https://github.com/binance-chain/node-binary.git
+cd node-binary/docker && docker build . -t binance/binance-node
+```
+
+### Run interactively
+
+`docker run --rm -it --ulimit nofile=16000:16000 binance/binance-node`
+
+### Run as daemon
+
+```
+ufw allow 27146/tcp
+docker run -d --name binance-node -v binance-data:/opt/bnbchaind -e "BNET=prod" -p 27146:27146 -p 27147:27147 -p 26660:26660 --restart unless-stopped --security-opt no-new-privileges --ulimit nofile=16000:16000 binance/binance-node
+```
+
+For more details see README.md in the docker directory.
+
 ## Manual Installation
 
 We currently use this repo to store historical versions of the compiled `node-binaries`.
