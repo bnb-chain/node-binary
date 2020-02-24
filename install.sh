@@ -1,7 +1,14 @@
 #!/bin/sh
 # Install script for Binance Chain
+#   - CLI (bnbcli)
+#   - Full Node client (bnbchaind)
+#   - Light Node client (lightd)
+#   - Installs both testnet and prod
+
 # Note: this is based on current structure of `node-binary` repo, which is not optimal
-# Future improvement: version binaries using git, instead of folder structure
+# - The installer script is a hack to simplify the installation process
+# - Our binaries should eventually be refactor into a `apt` or `npm` repo, which features upgradability
+# - We should not rely on folders for addressing (instead use git branches for versions)
 
 # Detect operating system
 # Future Improvement: Refactor into helper function
@@ -58,121 +65,119 @@ echo "Installer Version: 0.1.beta"
 echo "Detected OS: $DETECTED_OS"
 echo "====================================================="
 
-# Variables
-BNC_HOME_CONFIG_DIR=$BNC_HOME_DIR"/config"
+# Links to Documentation
 FULLNODE_DOCS_WEB_LINK="https://docs.binance.org/fullnode.html"
 LIGHTNODE_DOCS_WEB_LINK="https://docs.binance.org/light-client.html"
-GH_REPO_URL="https://github.com/binance-chain/node-binary"
-GH_RAW_PREFIX="raw/master"
-GH_REPO_DL_URL="$GH_REPO_URL/$GH_RAW_PREFIX"
 
 # Install location
 USR_LOCAL_BIN="/usr/local/bin"
 # Note: /usr/local/bin choice from https://unix.stackexchange.com/questions/259231/difference-between-usr-bin-and-usr-local-bin
 # Future improvement: needs uninstall script (brew uninstall) that removes executable from bin
 
-# Choose Home Directory
-BNC_HOME_DIR=${BNC_HOME_DIR:-"$HOME/.bnbchaind"}
-read -e -p "Choose home directory [default: ~/.bnbchaind]:" BNC_HOME_DIR
+# Choose Full Node Directory
+read -e -p "Choose home directory for Full Node [default: ~/.bnbchaind]:" BNC_FULLNODE_DIR
+BNC_FULLNODE_DIR=${BNC_FULLNODE_DIR:-"$HOME/.bnbchaind"}
 
-# Choose network option
-echo "... Choose Network Version"
-OPTION_NETWORK=("Mainnet" "Testnet")
-PS3='Choose Network Type: '
-select opt in "${OPTION_NETWORK[@]}"; do
-  case $opt in
-  "Mainnet")
-    NETWORK="prod"
-    break
-    ;;
-  "Testnet")
-    NETWORK="testnet"
-    break
-    ;;
-  esac
-done
+# Choose BNBCLI directory
+read -e -p "Choose home directory for CLI [default: ~/.bnbcli]:" BNC_CLI_DIR
+BNC_CLI_DIR=${BNC_CLI_DIR:-"$HOME/.bnbcli"}
+
+# Choose Light Node directory
+read -e -p "Choose home directory for Light Node [default: ~/.binance-lite]:" BNC_LIGHTNODE_DIR
+BNC_LIGHTNODE_DIR=${BNC_LIGHTNODE_DIR:-"$HOME/.binance-lite"}
+
+# Detect previous installation and create .bnbchaind folder,
+BNC_FULLNODE_CONFIG_DIR="$BNC_FULLNODE_DIR/config"
+echo "... creating $BNC_FULLNODE_DIR"
+if [ -d "$BNC_FULLNODE_DIR" ]; then
+  echo "... Error: Binance Chain Fullnode has already been installed"
+  echo "... Error: Please remove contents of ${BNC_FULLNODE_DIR} before reinstalling."
+  exit 1
+else
+  mkdir -p $BNC_FULLNODE_CONFIG_DIR
+  cd $BNC_FULLNODE_DIR
+fi
+if [ -f "$USR_LOCAL_BIN/bnbchaind" ]; then
+  echo "... Error: Binance Chain Fullnode has already been installed"
+  echo "... Error: Please remove bnbchaind from /usr/local/bin before reinstalling."
+  exit 1
+fi
+if [ -f "$USR_LOCAL_BIN/lightd" ]; then
+  echo "... Error: Binance Chain Light Node has already been installed"
+  echo "... Error: Please remove lightd from /usr/local/bin before reinstalling."
+  exit 1
+fi
+if [ -f "$USR_LOCAL_BIN/bnbcli" ]; then
+  echo "... Error: Binance Chain CLI Mainnet has already been installed"
+  echo "... Error: Please remove bnbcli from /usr/local/bin before reinstalling."
+  exit 1
+fi
+if [ -f "$USR_LOCAL_BIN/tbnbcli" ]; then
+  echo "... Error: Binance Chain CLI Testnet has already been installed"
+  echo "... Error: Please remove tbnbcli from /usr/local/bin before reinstalling."
+  exit 1
+fi
 
 # Version selection options
 # Future improvement: pull dynamically from version list
-OPTION_VERSION_NUMBER=("0.5.8" "0.5.9" "0.5.10" "0.6.0" "0.6.1" "0.6.2" "0.6.3")
-OPTION_NODE_TYPE=("Full Node" "Light Node")
 
-echo "... Choose version of Binance Chain node to install"
-PS3='Choose Version Number: '
-select opt in "${OPTION_VERSION_NUMBER[@]}"; do
-  VERSION_NUMBER="$opt"
-  break
-done
+CLI_LATEST_VERSION="0.6.3"
+# CLI_PROD_VERSION_NUMBERS=("0.5.8" "0.5.8.1" "0.6.0" "0.6.1" "0.6.2" "0.6.2-TSS-0.1.2" "0.6.3")
+# CLI_TESTNET_VERSION_NUMBERS=("0.5.8" "0.5.8.1" "0.6.0" "0.6.1" "0.6.2" "0.6.2-TSS-0.1.2" "0.6.3")
 
-echo "... Choose node type to install"
-PS3='Choose Node Type: '
-select opt in "${OPTION_NODE_TYPE[@]}"; do
-  case $opt in
-  "Full Node")
-    NODE_TYPE="fullnode"
-    break
-    ;;
-  "Light Node")
-    NODE_TYPE="lightnode"
-    break
-    ;;
-  esac
-done
+FULLNODE_LATEST_VERSION="0.6.3-hotfix"
+# FULLNODE_PROD_VERSION_NUMBERS=("0.5.8" "0.5.9" "0.5.10" "0.6.0" "0.6.1" "0.6.2" "0.6.3" "0.6.3-hotfix")
+# FULLNODE_TESTNET_VERSION_NUMBERS=("0.5.8" "0.5.10" "0.6.0" "0.6.1" "0.6.1-hotfix" "0.6.2" "0.6.3" "0.6.3-hotfix")
 
-# Download the selected binary
-# Future improvement: versions should just be a single .zip payload (e.g. 0.6.2)
-# Future improvement: should not use folder structure as addressing method
-VERSION_PATH="$NODE_TYPE/$NETWORK/$VERSION_NUMBER"
-GH_BASE_URL="$GH_REPO_URL/$GH_RAW_PREFIX/$VERSION_PATH"
-CONFIG_DOWNLOAD_URL="$GH_BASE_URL/config"
-NODE_BINARY_DOWNLOAD_URL="$GH_BASE_URL/$DETECTED_OS"
+LIGHTNODE_LATEST_VERSION="0.6.3"
+# LIGHTNODE_PROD_VERSION_NUMBERS=("0.5.8" "0.6.0" "0.6.1" "0.6.2" "0.6.3")
+# LIGHTNODE_TESTNET_VERSION_NUMBERS=("0.5.8" "0.6.0" "0.6.1" "0.6.2" "0.6.3")
 
-# wget the binary, config files
-# Future improvement: should refactor in the future with releases in a single .zip or .tar.gz file
-if [ $NODE_TYPE == "fullnode" ]; then
+# File Download URLs
+GH_REPO_URL="https://github.com/binance-chain/node-binary/raw/master"
 
-  # Detect previous installation and create .bnbchaind
-  echo "... creating $BNC_HOME_DIR"
-  if [ -d "$BNC_HOME_DIR" ]; then
-    echo "... Error: Binance Chain Fullnode has already been installed"
-    echo "... Error: Please remove contents of ${BNC_HOME_DIR} before reinstalling."
-    exit 1
+# Download both Testnet and Mainnet CLI
+for NETWORK in "prod" "testnet"; do
+  if [ "$NETWORK" = "prod" ]; then
+    FILENAME="bnbcli"
   else
-    mkdir -p $BNC_HOME_CONFIG_DIR
-    cd $BNC_HOME_DIR
+    FILENAME="tbnbcli"
   fi
-  if [ -f "$USR_LOCAL_BIN/bnbchaind" ]; then
-    echo "... Error: Binance Chain Fullnode has already been installed"
-    echo "... Error: Please remove bnbchaind from /usr/local/bin before reinstalling."
-    exit 1
-  fi
-
-  # Future improvement: should be refactored into helper function
+  CLI_VERSION_PATH="cli/$NETWORK/$CLI_LATEST_VERSION/$DETECTED_OS/$FILENAME"
+  CLI_BINARY_URL="$GH_REPO_URL/$CLI_VERSION_PATH"
   cd $USR_LOCAL_BIN
-  echo "... Downloading bnbchaind executable"
-  wget -q --show-progress "$NODE_BINARY_DOWNLOAD_URL/bnbchaind"
-  chmod 755 "./bnbchaind"
+  echo "... Downloading $FILENAME executable version:" $CLI_LATEST_VERSION
+  wget -q --show-progress "$CLI_BINARY_URL"
+  chmod 755 "./$FILENAME"
+done
 
-  cd $BNC_HOME_CONFIG_DIR
-  echo "... Downloading config files for version"
-  wget -q --show-progress "$CONFIG_DOWNLOAD_URL/app.toml"
-  wget -q --show-progress "$CONFIG_DOWNLOAD_URL/config.toml"
-  wget -q --show-progress "$CONFIG_DOWNLOAD_URL/genesis.json"
+# Download Light Node
+LIGHTNODE_VERSION_PATH="lightnode/prod/$LIGHTNODE_LATEST_VERSION/$DETECTED_OS"
+LIGHTNODE_BINARY_URL="$GH_REPO_URL/$LIGHTNODE_VERSION_PATH/lightd"
 
-  # Add installed version of Binance Chain to path
-  echo "... Installation successful!"
-  echo "... \`bnbchaind\` added to $USR_LOCAL_BIN"
-  echo "... Visit full node documentation at $DOCS_WEB_LINK"
-  echo "... Run \`bnbchaind\` to see list of available commands"
+cd $USR_LOCAL_BIN
+echo "... Downloading lightd executable version:" $LIGHTNODE_LATEST_VERSION
+wget -q --show-progress "$LIGHTNODE_BINARY_URL"
+chmod 755 "./lightd"
 
-elif [ $NODE_TYPE == "lightnode" ]; then
-  cd $USR_LOCAL_BIN
-  echo "... Downloading lightd executable"
-  wget -q --show-progress "$NODE_BINARY_DOWNLOAD_URL/lightd"
-  chmod 755 "./lightd"
+# Download Full Node
+FULLNODE_VERSION_PATH="fullnode/prod/$FULLNODE_LATEST_VERSION"
+FULLNODE_CONFIG_URL="$GH_REPO_URL/$FULLNODE_VERSION_PATH/config"
+FULLNODE_BINARY_URL="$GH_REPO_URL/$FULLNODE_VERSION_PATH/$DETECTED_OS/bnbchaind"
 
-  echo "... Installation successful!"
-  echo "... \`lightd\` added to $USR_LOCAL_BIN"
-  echo "... Visit full node documentation at $DOCS_WEB_LINK"
-  echo "... Run \`lightd\` to see list of available commands"
-fi
+cd $BNC_FULLNODE_CONFIG_DIR
+echo "... Downloading config files for full node"
+wget -q --show-progress "$FULLNODE_CONFIG_URL/app.toml"
+wget -q --show-progress "$FULLNODE_CONFIG_URL/config.toml"
+wget -q --show-progress "$FULLNODE_CONFIG_URL/genesis.json"
+
+cd $USR_LOCAL_BIN
+echo "... Downloading bnbchaind executable version:" $FULLNODE_LATEST_VERSION
+wget -q --show-progress "$FULLNODE_BINARY_URL"
+chmod 755 "./bnbchaind"
+
+# exit 1
+
+# Add installed version of Binance Chain to path
+echo "... Installation successful!"
+echo "... \`bnbcli\`, \`tbnbcli\`, \`bnbchaind\`, \`lightd\` added to $USR_LOCAL_BIN"
