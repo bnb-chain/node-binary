@@ -146,7 +146,7 @@ for NETWORK in "prod" "testnet"; do
   CLI_VERSION_PATH="cli/$NETWORK/$CLI_LATEST_VERSION/$DETECTED_OS/$FILENAME"
   CLI_BINARY_URL="$GH_REPO_URL/$CLI_VERSION_PATH"
   cd $USR_LOCAL_BIN
-  echo "... Downloading $FILENAME executable"
+  echo "... Downloading $FILENAME executable version:" $CLI_LATEST_VERSION
   wget -q --show-progress "$CLI_BINARY_URL"
   chmod 755 "./$FILENAME"
 done
@@ -156,7 +156,7 @@ LIGHTNODE_VERSION_PATH="lightnode/prod/$LIGHTNODE_LATEST_VERSION/$DETECTED_OS"
 LIGHTNODE_BINARY_URL="$GH_REPO_URL/$LIGHTNODE_VERSION_PATH/lightd"
 
 cd $USR_LOCAL_BIN
-echo "... Downloading lightd executable"
+echo "... Downloading lightd executable version:" $LIGHTNODE_LATEST_VERSION
 wget -q --show-progress "$LIGHTNODE_BINARY_URL"
 chmod 755 "./lightd"
 
@@ -172,7 +172,7 @@ wget -q --show-progress "$FULLNODE_CONFIG_URL/config.toml"
 wget -q --show-progress "$FULLNODE_CONFIG_URL/genesis.json"
 
 cd $USR_LOCAL_BIN
-echo "... Downloading bnbchaind executable"
+echo "... Downloading bnbchaind executable version:" $FULLNODE_LATEST_VERSION
 wget -q --show-progress "$FULLNODE_BINARY_URL"
 chmod 755 "./bnbchaind"
 
