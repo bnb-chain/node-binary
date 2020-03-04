@@ -35,6 +35,8 @@ Once the replay finish, the process will stop automatically.
 ## Test result:
 - **Hardware**: 8core,32G linux
 - **Main-net**
+    - **Settings**: local publisher with all topic, replay 17927253 blocks, the number of tx is 3686353
+    - **Result**: It takes 574 minutes, the the average speed is 520 blocks/seconds.  
 - **QA-net**
   - **Settings**: local publisher with all topic, replay 2000000 blocks, the number of tx is 2676645
   - **Result**: It takes 54 minutes, the average speed is 617 block/seconds. When there are 50 txs in one block, the speed is about 140 blocks/second. If the block is empty, the speed is about 625 blocks/second.
