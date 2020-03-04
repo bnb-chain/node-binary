@@ -7,6 +7,7 @@ Binance chain team provide a snapshot data of all history blocks and state for d
 - Download new binary from current page. 
 - Modify the config `with_app_stat = true` of ${chain-home}/config/config.toml into `with_app_stat = false`.
 - Modify all the config `indexer = "kv"` of ${chain-home}/config/config.toml into `indexer = "null"`. 
+- Modify the config `state_sync_reactor = true` of ${chain-home}/config/config.toml into `state_sync_reactor = false`.
 - Backup the state DB by `mv ${chain-home}/data/application.db ${chain-home}/data/application.db_backup`. This operation only need do once.
 - Start node by `nohup ./bnbchaind start --iavl-mock  true   --home ${your-chain-home}  &`.  
 - Each time to replay from genesis again, please do `rm -rf ${chain-home}/data/application.db ${chain-home}/data/cs.wal ` before starting the binary.
