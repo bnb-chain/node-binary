@@ -11,7 +11,7 @@ Binance chain team provide a snapshot data of all history blocks and state for d
 - Start node by `nohup ./bnbchaind start --iavl-mock  true   --home ${your-chain-home}  &`.  
 - Each time to replay from genesis again, please do `rm -rf ${chain-home}/data/application.db ${chain-home}/data/cs.wal ` before starting the binary.
 
-## What to do after replay finish
+## What to do after finish replaying blocks 
 Once the replay finish, the process will stop automatically.
 
 - Replace the binary of the official one.
