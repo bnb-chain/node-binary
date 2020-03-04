@@ -3,7 +3,7 @@
 Binance chain team provide a snapshot data of all history blocks and state for downloading. Full nodes can replay blocks locally without verification after downloading the data.
 
 ## Replay Step
-- Download snapshot from  and unzip it into the ${chain-home}/data.
+- Download snapshot from the url provided by binance team and unzip it into the ${chain-home}/data.
 - Download new binary from current page. 
 - Modify the config `with_app_stat = true` of ${chain-home}/config/config.toml into `with_app_stat = false`.
 - Modify all the config `indexer = "kv"` of ${chain-home}/config/config.toml into `indexer = "null"`. 
