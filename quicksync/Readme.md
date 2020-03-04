@@ -25,6 +25,7 @@ Once the replay finish, the process will stop automatically.
 - Merkle tree implement is replaced by memory DB.
 - No root hash verification, no basic verification for tx, no signature verification.
 - No snapshot at breath block.
+- No replay of validatorSet change.
 
 ## Test result:
 - **Hardware**: 8core,32G linux
