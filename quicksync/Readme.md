@@ -1,4 +1,4 @@
-# Solution to speed up sync
+# Fast replay
 
 Binance chain team provide a snapshot data of all history blocks and state for downloading. Full nodes can replay blocks locally without verification after downloading the data.
 
