@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Install script for Binance Chain
 #   - CLI (bnbcli)
 #   - Full Node client (bnbchaind)
