@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.3-hf.2
+*June. 1st*
+
+**Bug Fix**
+* Fix bugs with replaying blocks
+
 ## 0.6.3-hf.1
 *Nov. 21th*
 
