@@ -8,7 +8,7 @@ Some suggestions before using the tool:
 - As it use memory DB to store state, a VM with large memory will help.
 
 ## Step
-- Download snapshot from the [url](https://s3.ap-northeast-1.amazonaws.com/dex-bin.bnbstatic.com/chain-analisis-download-data/server-bnbchaind-disaster-node-gaiad-data.zip?AWSAccessKeyId=AKIAYINE6SBQLLLS7OXI&Signature=lKVPVfQSxVewd2AZNaw81TgGWqs%3D&Expires=1610338195) provided by binance team and unzip it into the ${chain-home}/data. You can download by `nohup curl ${the download url} > data.zip &`.  
+- Download snapshot from the [url](https://s3.ap-northeast-1.amazonaws.com/dex-bin.bnbstatic.com/chain-analisis-download-data/server-bnbchaind-disaster-node-gaiad-data.zip?AWSAccessKeyId=AKIAYINE6SBQLLLS7OXI&Signature=lKVPVfQSxVewd2AZNaw81TgGWqs%3D&Expires=1610338195) provided by binance team and unzip it into the ${chain-home}/data. You can download by `nohup wet ${the download url}  &`.  
 - Download new binary from current [page](https://github.com/binance-chain/node-binary/blob/quicksync/quicksync/bnbchaind). 
 - Modify the config `with_app_stat = true` of ${chain-home}/config/config.toml into `with_app_stat = false`.
 - Modify all the config `indexer = "kv"` of ${chain-home}/config/config.toml into `indexer = "null"`. 
