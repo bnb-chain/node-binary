@@ -43,10 +43,6 @@ BEP67Height = 86830000
 # Block height of BEP70 upgrade
 BEP70Height = 86830000
 
-[dex]
-# The suffixed symbol of BUSD
-BUSDSymbol = "BUSD-C86"
-
 [query]
 # ABCI query interface black list, suggested value: ["custom/gov/proposals", "custom/timelock/timelocks", "custom/atomicSwap/swapcreator", "custom/atomicSwap/swaprecipient"]
 ABCIQueryBlackList = []
@@ -114,3 +110,7 @@ logFileRoot = ""
 logFilePath = "bnc.log"
 # Number of logs keep in memory before writing to file
 logBuffSize = 10000
+
+[dex]
+# The suffixed symbol of BUSD
+BUSDSymbol = "BUSD-C86"
