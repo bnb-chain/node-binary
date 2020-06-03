@@ -10,6 +10,7 @@
 
 Improvements
 * BEP67 Price-based Order Expiration
+* Add pendingMatch flag to orderbook query response
 
 ## 0.6.3-hf.2
 *June. 1st*
