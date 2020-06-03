@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.7.0
+*June. 3rd*
+
+**New Features**
+
+* BEP8 - Mini-BEP2 token features
+* BEP70 - Support busd pair listing and trading
+
+Improvements
+* BEP67 Price-based Order Expiration
+* Add pendingMatch flag to orderbook query response
+
 ## 0.6.3-hf.2
 *June. 1st*
 
