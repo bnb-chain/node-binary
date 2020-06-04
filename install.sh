@@ -122,6 +122,8 @@ fi
 # Future improvement: pull dynamically from version list
 
 CLI_LATEST_VERSION="0.6.3"
+TEST_CLI_LATEST_VERSION="0.7.0"
+
 # CLI_PROD_VERSION_NUMBERS=("0.5.8" "0.5.8.1" "0.6.0" "0.6.1" "0.6.2" "0.6.2-TSS-0.1.2" "0.6.3")
 # CLI_TESTNET_VERSION_NUMBERS=("0.5.8" "0.5.8.1" "0.6.0" "0.6.1" "0.6.2" "0.6.2-TSS-0.1.2" "0.6.3")
 
@@ -140,15 +142,21 @@ GH_REPO_URL="https://github.com/binance-chain/node-binary/raw/master"
 for NETWORK in "prod" "testnet"; do
   if [ "$NETWORK" = "prod" ]; then
     FILENAME="bnbcli"
+    CLI_VERSION_PATH="cli/$NETWORK/$CLI_LATEST_VERSION/$DETECTED_OS/$FILENAME"
+    CLI_BINARY_URL="$GH_REPO_URL/$CLI_VERSION_PATH"
+    cd $USR_LOCAL_BIN
+    echo "... Downloading $FILENAME executable version:" $CLI_LATEST_VERSION
+    wget -q --show-progress "$CLI_BINARY_URL"
+    chmod 755 "./$FILENAME"
   else
     FILENAME="tbnbcli"
+    CLI_VERSION_PATH="cli/$NETWORK/$TEST_CLI_LATEST_VERSION/$DETECTED_OS/$FILENAME"
+    CLI_BINARY_URL="$GH_REPO_URL/$CLI_VERSION_PATH"
+    cd $USR_LOCAL_BIN
+    echo "... Downloading $FILENAME executable version:" $TEST_CLI_LATEST_VERSION
+    wget -q --show-progress "$CLI_BINARY_URL"
+    chmod 755 "./$FILENAME"
   fi
-  CLI_VERSION_PATH="cli/$NETWORK/$CLI_LATEST_VERSION/$DETECTED_OS/$FILENAME"
-  CLI_BINARY_URL="$GH_REPO_URL/$CLI_VERSION_PATH"
-  cd $USR_LOCAL_BIN
-  echo "... Downloading $FILENAME executable version:" $CLI_LATEST_VERSION
-  wget -q --show-progress "$CLI_BINARY_URL"
-  chmod 755 "./$FILENAME"
 done
 
 # Download Light Node
@@ -162,6 +170,7 @@ chmod 755 "./lightd"
 
 # Download Full Node
 
+echo "... Choose node type to install"
 echo "... Choose Network Version"
 OPTION_NETWORK=("Mainnet" "Testnet")
 PS3='Choose Network Type: '
