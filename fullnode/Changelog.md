@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.1
+
+**Bug Fix**
+* Fix bugs with delist
+
+
 ## 0.7.0
 *June. 3rd*
 
