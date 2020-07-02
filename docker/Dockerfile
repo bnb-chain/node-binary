@@ -48,7 +48,7 @@ COPY --from=builder /node-binary/${NODETYPE}/testnet/${BVER}/linux/bnbchaind /no
 COPY --from=builder /node-binary/${NODETYPE}/prod/${BVER}/linux/bnbchaind /node-binary/fullnode/prod/${BVER}/linux/
 COPY --from=builder /node-binary/${NODETYPE}/testnet/${BVER}/config/* /node-binary/fullnode/testnet/${BVER}/config/
 COPY --from=builder /node-binary/${NODETYPE}/prod/${BVER}/config/* /node-binary/fullnode/prod/${BVER}/config/
-COPY ./bin/*.sh /usr/local/bin/
+COPY --from=builder /node-binary/docker/bin/*.sh /usr/local/bin/
 
 RUN set -ex \
 && chmod +x /usr/local/bin/*.sh \
