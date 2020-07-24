@@ -122,7 +122,7 @@ fi
 # Future improvement: pull dynamically from version list
 
 CLI_LATEST_VERSION="0.7.2"
-TEST_CLI_LATEST_VERSION="0.7.0"
+TEST_CLI_LATEST_VERSION="0.7.2"
 
 # CLI_PROD_VERSION_NUMBERS=("0.5.8" "0.5.8.1" "0.6.0" "0.6.1" "0.6.2" "0.6.2-TSS-0.1.2" "0.6.3")
 # CLI_TESTNET_VERSION_NUMBERS=("0.5.8" "0.5.8.1" "0.6.0" "0.6.1" "0.6.2" "0.6.2-TSS-0.1.2" "0.6.3")
@@ -182,7 +182,7 @@ select opt in "${OPTION_NETWORK[@]}"; do
     break
     ;;
   "Testnet")
-    FULLNODE_LATEST_VERSION="0.7.1"
+    FULLNODE_LATEST_VERSION="0.7.2"
     FULLNODE_VERSION_PATH="fullnode/testnet/$FULLNODE_LATEST_VERSION"
     break
     ;;

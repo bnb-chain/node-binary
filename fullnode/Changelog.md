@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.2
+
+*July. 23rd*
+
+**New Features**
+
+* Staking features for Binance Smart Chain
+
 ## 0.7.1
 
 **Bug Fix**
