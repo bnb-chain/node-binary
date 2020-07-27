@@ -92,6 +92,36 @@ publishBlock = false
 blockTopic = "block"
 blockKafka = "127.0.0.1:9092"
 
+# Whether we want publish distribution
+publishDistributeReward = false
+distributeRewardTopic = "distribution"
+distributeRewardKafka = "127.0.0.1:9092"
+
+# Whether we want publish staking
+publishStaking = false
+stakingTopic = "staking"
+stakingKafka = "127.0.0.1:9092"
+
+# Whether we want publish slashing
+publishSlashing = false
+slashingTopic = "slashing"
+slashingKafka = "127.0.0.1:9092"
+
+# Whether we want publish cross transfer
+publishCrossTransfer = false
+crossTransferTopic = "crossTransfer"
+crossTransferKafka = "127.0.0.1:9092"
+
+# Whether we want publish side proposals
+publishSideProposal = false
+sideProposalTopic = "sideProposal"
+sideProposalKafka = "127.0.0.1:9092"
+
+# Whether we want publish breatheBlock
+publishBreatheBlock = false
+breatheBlockTopic = "breatheBlock"
+breatheBlockKafka = "127.0.0.1:9092"
+
 # Global setting
 publicationChannelSize = 10000
 publishKafka = false
