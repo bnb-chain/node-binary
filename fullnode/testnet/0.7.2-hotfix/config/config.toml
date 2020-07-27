@@ -18,7 +18,7 @@ fast_sync = true
 # Only take effect when HotSyncReactor is true.
 # If true, will sync blocks use hot sync protocol
 # If false, still use tendermint consensus protocol, but can still handle other peers sync request.
-hot_sync = false
+hot_sync = true
 
 # The max wait time for subscribe a block.
 # Only take effect when hot_sync is true
