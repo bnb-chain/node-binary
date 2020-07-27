@@ -1,6 +1,16 @@
 # Changelog
 
-## 0.7.2
+
+## 0.7.2-bsc.beta.2-hf.1
+
+*July. 27rd*
+
+**Bug Fix**
+
+* Fix node crash when node failed to load block from db after state sync.
+* Fix `latest_block_height` of status api do not update after switch to `hot-sync`.
+
+## 0.7.2-bsc.beta.2
 
 *July. 23rd*
 
