@@ -4,7 +4,7 @@
 
 *July. 31rd*
 
-Fix minor issue
+Add minor changes
 
 ## 0.7.2-bsc.beta.2-hf.1
 
