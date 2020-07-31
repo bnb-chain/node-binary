@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.2-bsc.beta.3
+
+*July. 31rd*
+
+Add minor changes
 
 ## 0.7.2-bsc.beta.2-hf.1
 
