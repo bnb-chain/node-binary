@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.2-bsc.beta.4
+
+*Aug. 21th*
+
+Fix bugs with reward distribution
+
 ## 0.7.2-bsc.beta.3
 
 *July. 31rd*
