@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.8.0
+*Aug 23th*
+ **New Feature**
+* BNB Staking
+* Cross-chain transfer
+* On-chain governance
+
+## 0.7.0
+*June. 3rd*
+
+**New Features**
+
+* BEP8 - Mini-BEP2 token features
+* BEP70 - Support busd pair listing and trading
+
+Improvements
+* BEP67 Price-based Order Expiration
+
 ## 0.6.3
 *Nov 11th*
  **New Feature**

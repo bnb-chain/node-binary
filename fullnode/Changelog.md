@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.0
+
+*Aug. 23th*
+
+Prepare a new release
+
 ## 0.7.2-bsc.beta.4
 
 *Aug. 21th*
