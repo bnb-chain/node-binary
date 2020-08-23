@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.8.0
+
+*Aug. 23th*
+
+**New Features**
+
+* Enable BNB staking
+* Enable Cross-chain transfer between BC and BSC
+* Add BSC on-chain governance
+
 ## 0.7.2-bsc.beta.4
 
 *Aug. 21th*
