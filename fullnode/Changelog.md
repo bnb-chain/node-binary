@@ -4,7 +4,11 @@
 
 *Aug. 23th*
 
-Prepare a new release
+**New Features**
+
+* Enable BNB staking
+* Enable Cross-chain transfer between BC and BSC
+* Add BSC on-chain governance
 
 ## 0.7.2-bsc.beta.4
 
