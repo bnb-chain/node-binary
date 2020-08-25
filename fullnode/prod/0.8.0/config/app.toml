@@ -139,6 +139,10 @@ logFilePath = "bnc.log"
 # Number of logs keep in memory before writing to file
 logBuffSize = 10000
 
+[cross_chain]
+ibcChainId = 1
+bscChainId = "bsc"
+bscIbcChainId = 56
 
 [dex]
 # The suffixed symbol of BUSD
