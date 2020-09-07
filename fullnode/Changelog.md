@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.2-bsc.beta.5
+
+*Sep. 7th*
+
+Fix bugs with breath block interval
+
 ## 0.8.0
 
 *Aug. 23th*
