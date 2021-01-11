@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.0-hf.2
+
+*Jan. 11th 2021*
+
+Resolve the issue that memory usage is too high when Hotsync is enabled
+
 ## 0.7.2-bsc.beta.5
 
 *Sep. 7th*

@@ -177,7 +177,7 @@ PS3='Choose Network Type: '
 select opt in "${OPTION_NETWORK[@]}"; do
   case $opt in
   "Mainnet")
-    FULLNODE_LATEST_VERSION="0.8.0"
+    FULLNODE_LATEST_VERSION="0.8.0-hf.2"
     FULLNODE_VERSION_PATH="fullnode/prod/$FULLNODE_LATEST_VERSION"
     break
     ;;
