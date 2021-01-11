@@ -4,7 +4,7 @@
 
 *Jan. 11th 2021*
 
-Fix issues with performance
+Resolve the issue that memory usage is too high when Hotsync is enabled
 
 ## 0.7.2-bsc.beta.5
 
