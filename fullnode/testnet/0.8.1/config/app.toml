@@ -128,8 +128,8 @@ crossTransferKafka = "127.0.0.1:9092"
 
 ## Whether we want publish mirror events
 publishMirror = false
-mirrorTopic = mirror“”
-mirrorKafka = “127.0.0.1:9092”
+mirrorTopic = "mirror"
+mirrorKafka = "127.0.0.1:9092"
 
 # Whether we want publish side proposals
 publishSideProposal = false
