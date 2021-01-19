@@ -55,11 +55,6 @@ FixFailAckPackageHeight = 7841000
 # Block height of Enable Account Scripts For CrossChain Transfer upgrade
 EnableAccountScriptsForCrossChainTransferHeight = 7841000
 
-## Whether we want publish mirror events
-publishMirror = false
-mirrorTopic = false
-mirrorKafka = false
-
 [query]
 # ABCI query interface black list, suggested value: ["custom/gov/proposals", "custom/timelock/timelocks", "custom/atomicSwap/swapcreator", "custom/atomicSwap/swaprecipient"]
 ABCIQueryBlackList = []
@@ -130,6 +125,11 @@ slashingKafka = "127.0.0.1:9092"
 publishCrossTransfer = false
 crossTransferTopic = "crossTransfer"
 crossTransferKafka = "127.0.0.1:9092"
+
+## Whether we want publish mirror events
+publishMirror = false
+mirrorTopic = mirror“”
+mirrorKafka = “127.0.0.1:9092”
 
 # Whether we want publish side proposals
 publishSideProposal = false
