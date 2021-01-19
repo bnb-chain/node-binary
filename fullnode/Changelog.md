@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.8.1
+
+*Jan. 19th*
+
+New release for Binance Chain testnet
+
+**New Features**
+
+* BEP82 Implementation
+* BEP84 Implementation
+* BEP87 Implementation
+* Cross-chain Transfer Improvements
+
 ## 0.8.0-hf.2
 
 *Jan. 11th 2021*
