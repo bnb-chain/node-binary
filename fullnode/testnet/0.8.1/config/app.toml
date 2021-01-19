@@ -50,6 +50,16 @@ BEP82Height = 7841000
 BEP84Height = 7841000
 # Block height of BEP87Height upgrade
 BEP87Height = 7841000
+# Block height of FixFailAckPackage upgrade
+FixFailAckPackageHeight = 7841000
+# Block height of Enable Account Scripts For CrossChain Transfer upgrade
+EnableAccountScriptsForCrossChainTransferHeight = 7841000
+
+## Whether we want publish mirror events
+publishMirror = false
+mirrorTopic = false
+mirrorKafka = false
+
 [query]
 # ABCI query interface black list, suggested value: ["custom/gov/proposals", "custom/timelock/timelocks", "custom/atomicSwap/swapcreator", "custom/atomicSwap/swaprecipient"]
 ABCIQueryBlackList = []
