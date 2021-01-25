@@ -45,15 +45,15 @@ BEP70Height = 99550000
 # Block height of smart chain upgrade
 LaunchBscUpgradeHeight = 109999000
 # Block height of BEP82Height upgrade
-BEP82Height = 145390000
+BEP82Height = 146060000
 # Block height of BEP84Height upgrade
-BEP84Height = 145390000
+BEP84Height = 146060000
 # Block height of BEP87Height upgrade
-BEP87Height = 145390000
+BEP87Height = 146060000
 # Block height of FixFailAckPackage upgrade
-FixFailAckPackageHeight = 145390000
+FixFailAckPackageHeight = 146060000
 # Block height of Enable Account Scripts For CrossChain Transfer upgrade
-EnableAccountScriptsForCrossChainTransferHeight = 145390000
+EnableAccountScriptsForCrossChainTransferHeight = 146060000
 
 [addr]
 # Bech32PrefixAccAddr defines the Bech32 prefix of an account's address
