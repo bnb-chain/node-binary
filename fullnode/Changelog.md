@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.2
+
+*Jan 26th 2021*
+
+New release for Binance Chain Mainnet
+
+**Bugfix**
+
+* Fix issue with handling errors of `mirror` and `sync`
+
+
 ## 0.8.1
 
 *Jan. 19th*
