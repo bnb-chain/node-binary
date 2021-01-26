@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.8.2
+
+*Jan. 26th*
+
+New release for Binance Chain mainnet
+
+v0.8.2 and v0.8.1 have the same features
+
+## 0.8.1
+*Jan 21th 2021*
+
+New release for Binance Chain testnet
+
+**New Features**
+
+* BEP82 Implementation
+* BEP84 Implementation
+* BEP87 Implementation
+
 ## 0.8.0
 *Aug 23th*
  **New Feature**
