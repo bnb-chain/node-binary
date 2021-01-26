@@ -6,6 +6,8 @@
 
 New release for Binance Chain mainnet
 
+v0.8.2 and v0.8.1 have the same features
+
 ## 0.8.1
 *Jan 21th 2021*
 
