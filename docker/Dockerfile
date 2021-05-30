@@ -1,8 +1,8 @@
 # UPDATE ME when new version is out !!!!
-ARG BVER_TESTNET=0.7.1
-ARG CLIVER_TESTNET=0.7.0
-ARG BVER_PROD=0.7.2-hf.1
-ARG CLIVER_PROD=0.7.2
+ARG BVER_TESTNET=0.8.2
+ARG CLIVER_TESTNET=0.8.2
+ARG BVER_PROD=0.8.2
+ARG CLIVER_PROD=0.8.2
 FROM ubuntu:18.04 as builder
 
 # Dockerfile for running Binance node from binary packages under docker
