@@ -1,14 +1,15 @@
 # UPDATE ME when new version is out !!!!
-ARG BVER_TESTNET=0.7.1
-ARG CLIVER_TESTNET=0.7.0
-ARG BVER_PROD=0.7.2-hf.1
-ARG CLIVER_PROD=0.7.2
+ARG BVER_TESTNET=0.8.2
+ARG CLIVER_TESTNET=0.8.2
+ARG BVER_PROD=0.8.2
+ARG CLIVER_PROD=0.8.2
 FROM ubuntu:18.04 as builder
 
 # Dockerfile for running Binance node from binary packages under docker
 # https://docs.binance.org/fullnode.html#run-full-node-to-join-binance-chain
 # MIT license
-LABEL Maintainer = "Evgeny Varnavskiy <varnavruz@gmail.com>"
+LABEL Maintainer="Evgeny Varnavskiy <varnavruz@gmail.com>"
+LABEL Maintainer="Jacob Gadikian <jacobgadikian@gmail.com>"
 LABEL Description="Docker image for Binance full and light nodes"
 LABEL License="MIT License"
 
@@ -59,14 +60,7 @@ COPY --from=builder /node-binary/${NODETYPE}/testnet/${BVER_TESTNET}/config/* /n
 COPY --from=builder /node-binary/${NODETYPE}/prod/${BVER_PROD}/config/* /node-binary/fullnode/prod/${BVER}/config/
 COPY --from=builder /node-binary/docker/bin/*.sh /usr/local/bin/
 
-RUN set -ex \
-&& chmod +x /usr/local/bin/*.sh \
-&& mkdir -p "$BNCHOME" \
-&& groupadd --gid "$HOST_USER_GID" bnbchaind \
-&& useradd --uid "$HOST_USER_UID" --gid "$HOST_USER_GID" --shell /bin/bash --no-create-home bnbchaind \
-&& chown -R bnbchaind:bnbchaind "$BNCHOME"
-
-VOLUME ${BNCHOME}
+VOLUME /opt/bnbchaind
 
 # RPC service listen on port 27147 and P2P service listens on port 27146 by default.
 # Prometheus is enabled on port 26660 by default, and the endpoint is /metrics.
