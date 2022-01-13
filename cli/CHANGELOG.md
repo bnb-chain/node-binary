@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.3
+
+*Jan. 13th 2022*
+
+New release for Binance Chain mainnet
+
+v0.8.3 and v0.8.2 have the same features
+
 ## 0.8.2
 
 *Jan. 26th*
