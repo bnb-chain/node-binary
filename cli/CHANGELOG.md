@@ -6,7 +6,8 @@
 
 New release for Binance Chain mainnet
 
-v0.8.3 and v0.8.2 have the same features
+**New Features**
+* Align BIP-44 for deriving HD wallets
 
 ## 0.8.2
 

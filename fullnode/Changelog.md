@@ -6,7 +6,7 @@
 
 New release for Binance Chain Mainnet
 
-Fix bugs and add enhancements
+Fix bugs and security patches for several issues
 
 ## 0.8.2
 
