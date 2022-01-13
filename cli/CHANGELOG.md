@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.3
+
+*Jan. 13th 2022*
+
+New release for Binance Chain mainnet
+
+**New Features**
+* Align BIP-44 for deriving HD wallets
+
 ## 0.8.2
 
 *Jan. 26th*
