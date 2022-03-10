@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.9.0
+
+*Mar. 10th 2022*
+
+New release for BNB Beacon Chain Testnet
+
+**IMPROVEMENTS**
+
+* [\#835](https://github.com/bnb-chain/node/pull/835) [Staking] Implement BEP128
+
+
 ## 0.8.3
 
 *Jan. 13th 2022*
