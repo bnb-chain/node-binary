@@ -7,10 +7,10 @@
 
 Binance Chain clients are released as compiled executables in this repo, with a few variants:
 
-- [Full Node](https://docs.binance.org/fullnode.html): downloads full blockchain and relays transactions
-- [Light Client](https://docs.binance.org/light-client.html): does not sync state or relay transactions
+- [Full Node](https://docs.bnbchain.org/docs/validator/fullnode): downloads full blockchain and relays transactions
+- [Light Client](https://docs.bnbchain.org/docs/beaconchain/light-client/): does not sync state or relay transactions
 
-For more on which client to run, see [Light Client vs Full Node](https://docs.binance.org/light-client.html#light-client-versus-full-node).
+For more on which client to run, see [Light Client vs Full Node](https://docs.bnbchain.org/docs/beaconchain/light-client/#light-client-versus-full-node).
 
 ## Installation Script
 
@@ -55,12 +55,12 @@ We currently use this repo to store historical versions of the compiled `node-bi
 
 ### Running a Full Node
 
-- Step-by-step tutorial at [full node docs](https://docs.binance.org/fullnode.html)
-- [Common issues when running a full node](https://docs.binance.org/fullnodeissue.html#common-issues-when-running-a-full-node)
+- Step-by-step tutorial at [full node docs](https://docs.bnbchain.org/docs/beaconchain/develop/node/join-mainnet)
+- [Common issues when running a full node](https://docs.bnbchain.org/docs/beaconchain/develop/node/fullnodeissue)
 
 ### Running a Light Client
 
-- Step-by-step tutorial at [light client docs](https://docs.binance.org/light-client.html#light-client-versus-full-node)
+- Step-by-step tutorial at [light client docs](https://docs.bnbchain.org/docs/beaconchain/light-client/#light-client-versus-full-node)
 
 ## Uninstalling
 
@@ -77,7 +77,7 @@ rm /usr/local/bin/bnbchaind
 
 ### Common Issues and Solutions
 
-https://docs.binance.org/fullnodeissue.html
+https://docs.bnbchain.org/docs/beaconchain/develop/node/fullnodeissue
 
 # Tools
 
@@ -86,5 +86,5 @@ https://docs.binance.org/fullnodeissue.html
 
 ## Resrouces
 
-- [Dos Site](https://docs.binance.org/)
-- [Wallet](https://docs.binance.org/wallets.html)
+- [Dos Site](https://docs.bnbchain.org/)
+- [Wallet](https://docs.bnbchain.org/docs/beaconchain/wallets)
