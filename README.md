@@ -1,5 +1,7 @@
 # Binance Chain Client
 
+:rocket: Important Note: BNB Beacon Chain is opensoured, and binary and config files are released in the [source code repo](https://github.com/bnb-chain/node). Please visit [it](https://github.com/bnb-chain/node/releases) to get the lastest updates, and this repo will stop updating reated files.
+
 [Binance Chain](https://www.binance.org/) is a blockchain developed by Binance and its community, that focuses on building a performant matching engine and exchange over a decentralized network.
 
 - [Match logic](https://docs.binance.org/match.html)
