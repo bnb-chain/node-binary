@@ -1,0 +1,2 @@
+light.exe filter=lfs diff=lfs merge=lfs -text
+lightd.exe filter=lfs diff=lfs merge=lfs -text
